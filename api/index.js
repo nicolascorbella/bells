@@ -1,23 +1,35 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from "mercadopago";
-// Agrega credenciales
+
+// Agrega credenciales de Mercado Pago
 const client = new MercadoPagoConfig({
   accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
 });
 
+// Obtener el directorio actual
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Puerto dinámico
 
 app.use(cors());
 app.use(express.json());
 
+// Configuración para servir archivos estáticos desde la carpeta 'public'
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Ruta para servir el archivo 'index.html'
 app.get("/", (req, res) => {
-  res.send("Soy el server :)");
+  res.sendFile(path.join(__dirname, '/../index.html'));
 });
 
+// Ruta para crear la preferencia de Mercado Pago
 app.post("/create_preference", async (req, res) => {
   try {
     const body = {
@@ -50,6 +62,7 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
+// Inicia el servidor en el puerto configurado
 app.listen(port, () => {
-  console.log(`El servidor esta corriendo en el puerto ${port}`);
+  console.log(`El servidor está corriendo en el puerto ${port}`);
 });
