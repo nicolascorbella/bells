@@ -1,4 +1,3 @@
-<<<<<<< HEAD:api/package.json
 {
   "name": "server",
   "version": "1.0.0",
@@ -18,23 +17,3 @@
     "path": "^0.12.7"
   }
 }
-=======
-{
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "mercadopago": "^2.0.5"
-  }
-}
->>>>>>> bed42be9bcc32ac57ff1608a385c5c3bf77bc80f:package.json
