@@ -1,84 +1,71 @@
 import express from "express";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
-import { MercadoPagoConfig, Preference } from "mercadopago"; // Mantengo Mercado Pago sin cambios
+import path from "path"; // Necesario para manejar rutas de archivos
+import { fileURLToPath } from "url"; // Para obtener el directorio actual
 
-// Configura credenciales de Mercado Pago
+// SDK de Mercado Pago
+import { MercadoPagoConfig, Preference } from "mercadopago";
+// Agrega credenciales
 const client = new MercadoPagoConfig({
   accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
 });
 
-// Obtener el directorio actual
+// Obtener el directorio actual en ESM (equivalente a __dirname)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware para permitir peticiones desde diferentes orígenes y procesar JSON
+// Middleware para permitir CORS y parsear JSON
 app.use(cors());
 app.use(express.json());
 
-// Configuración para servir archivos estáticos
-app.use("/css", express.static(path.join(__dirname, 'css')));
-app.use(express.static(path.join(__dirname))); // Sirve la raíz para otros archivos estáticos
+// Servir archivos estáticos (CSS, imágenes, JavaScript) desde el directorio actual
+app.use(express.static(__dirname));
 
-// Rutas para servir archivos HTML
+// Ruta para servir el archivo index.html cuando se accede a la raíz "/"
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.get("/tienda", (req, res) => {
-  res.sendFile(path.join(__dirname, 'tienda.html'));
-});
-
-app.get("/carrito", (req, res) => {
-  res.sendFile(path.join(__dirname, 'carrito.html'));
-});
-
-// Ruta para crear la preferencia de Mercado Pago
+// Ruta para crear una preferencia de pago en Mercado Pago
 app.post("/create_preference", async (req, res) => {
   try {
-    // Verifica que se proporcionen los parámetros requeridos
     const { title, quantity, price } = req.body;
+
     if (!title || !quantity || !price) {
       return res.status(400).json({ error: "Faltan parámetros requeridos" });
     }
 
-    // Crea la preferencia de Mercado Pago
-    const body = {
+    // Creación de preferencia
+    const preference = {
       items: [
         {
-          title: title,
+          title,
           quantity: Number(quantity),
           unit_price: Number(price),
           currency_id: "ARS",
         },
       ],
       back_urls: {
-        success: "https://bairesrealestate.online/success",
-        failure: "https://bairesrealestate.online/failure",
-        pending: "https://bairesrealestate.online/pending",
+        success: "https://tusitio.com/success",
+        failure: "https://tusitio.com/failure",
+        pending: "https://tusitio.com/pending",
       },
       auto_return: "approved",
     };
 
-    const preference = new Preference(client);
-    const result = await preference.create({ body });
+    const result = await mercadopago.preferences.create(preference);
 
-    // Devuelve la ID de la preferencia
-    res.json({ id: result.id });
+    res.json({ id: result.body.id });
   } catch (error) {
     console.error("Error al crear la preferencia:", error);
-    res.status(500).json({
-      error: "Error al crear la preferencia",
-      details: error.message,
-    });
+    res.status(500).json({ error: "No se pudo crear la preferencia" });
   }
 });
 
 // Inicia el servidor
 app.listen(port, () => {
-  console.log(`El servidor está corriendo en el puerto ${port}`);
+  console.log(`Servidor corriendo en el puerto ${port}`);
 });
