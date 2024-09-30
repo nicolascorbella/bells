@@ -4,7 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 // SDK de Mercado Pago
-import { MercadoPagoConfig, Preference } from "mercadopago";
+import { MercadoPagoConfig, Preference } from "mercadopago"; // Mantengo Mercado Pago sin cambios
 
 // Agrega credenciales de Mercado Pago
 const client = new MercadoPagoConfig({
@@ -16,17 +16,31 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 3000; // Puerto dinámico
+const port = process.env.PORT || 3000;
 
+// Middleware para permitir peticiones desde diferentes orígenes y procesar JSON
 app.use(cors());
 app.use(express.json());
 
-// Configuración para servir archivos estáticos desde la carpeta 'public'
-app.use(express.static(path.join(__dirname, 'public')));
+// Configuración para servir la carpeta 'css'
+app.use("/css", express.static(path.join(__dirname, 'css')));
 
-// Ruta para servir el archivo 'index.html'
+// Configuración para servir otros archivos estáticos desde la carpeta raíz
+app.use(express.static(path.join(__dirname)));
+
+// Ruta para servir 'index.html'
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '/../index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Ruta para servir 'tienda.html'
+app.get("/tienda", (req, res) => {
+  res.sendFile(path.join(__dirname, 'tienda.html'));
+});
+
+// Ruta para servir 'carrito.html'
+app.get("/carrito", (req, res) => {
+  res.sendFile(path.join(__dirname, 'carrito.html'));
 });
 
 // Ruta para crear la preferencia de Mercado Pago
@@ -42,15 +56,16 @@ app.post("/create_preference", async (req, res) => {
         },
       ],
       back_urls: {
-        success: "https://www.youtube.com/@onthecode",
-        failure: "https://www.youtube.com/@onthecode",
-        pending: "https://www.youtube.com/@onthecode",
+        success: "https://bairesrealestate.online/success",
+        failure: "https://bairesrealestate.online/failure",
+        pending: "https://bairesrealestate.online/pending",
       },
       auto_return: "approved",
     };
 
     const preference = new Preference(client);
     const result = await preference.create({ body });
+
     res.json({
       id: result.id,
     });
@@ -62,8 +77,7 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
-// Inicia el servidor en el puerto configurado
+// Inicia el servidor
 app.listen(port, () => {
   console.log(`El servidor está corriendo en el puerto ${port}`);
 });
-
