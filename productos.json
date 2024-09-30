@@ -1,0 +1,112 @@
+[
+    {
+        "id": "campana01",
+        "titulo": "Calavera",
+        "imagen": "../campanas/calavera/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 1000
+    },
+    {
+        "id": "campana02",
+        "titulo": "CruzMalta",
+        "imagen": "../campanas/cruzmalta/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 1100
+    },
+    {
+        "id": "campana03",
+        "titulo": "Paz",
+        "imagen": "../campanas/paz/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 1200
+    },
+    {
+        "id": "campana04",
+        "titulo": "Live",
+        "imagen": "../campanas/live/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 1300
+    },
+    {
+        "id": "campana05",
+        "titulo": "Unoporciento",
+        "imagen": "../campanas/unoporciento/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 1400
+    },
+    {
+        "id": "campana06",
+        "titulo": "Cruz Alada",
+        "imagen": "../campanas/cruzalada/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 1500
+    },
+    {
+        "id": "campana07",
+        "titulo": "Motocrucis",
+        "imagen": "../campanas/motocrucis/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 1600
+    },
+    {
+        "id": "campana08",
+        "titulo": "Lady Rider",
+        "imagen": "../campanas/ladyrider/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 1700
+    },
+    {
+        "id": "campana09",
+        "titulo": "Lucky13",
+        "imagen": "../campanas/lucky13/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 1800
+    },
+    {
+        "id": "campana10",
+        "titulo": "Manopla",
+        "imagen": "../campanas/manopla/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 1900
+    },
+    {
+        "id": "campana11",
+        "titulo": "Ruta66",
+        "imagen": "../campanas/ruta66/img1.jpg",
+        "categoria": {
+            "nombre": "Abrigos",
+            "id": "abrigos"
+        },
+        "precio": 2000
+    }
+]
