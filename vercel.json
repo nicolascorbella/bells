@@ -2,12 +2,21 @@
   "version": 2,
   "routes": [
     {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
       "src": "/tienda",
       "dest": "/tienda.html"
     },
     {
       "src": "/carrito",
       "dest": "/carrito.html"
+    },
+    {
+      "src": "/create_preference",
+      "methods": ["POST"],
+      "dest": "/main.js"
     },
     {
       "src": "/(.*)",
