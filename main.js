@@ -4,7 +4,8 @@ import path from "path"; // Necesario para manejar rutas de archivos
 import { fileURLToPath } from "url"; // Para obtener el directorio actual
 
 // SDK de Mercado Pago
-import { MercadoPagoConfig, Preference } from "mercadopago";
+import { MercadoPagoConfig } from "mercadopago";
+
 // Agrega credenciales
 const client = new MercadoPagoConfig({
   accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
@@ -56,7 +57,8 @@ app.post("/create_preference", async (req, res) => {
       auto_return: "approved",
     };
 
-    const result = await mercadopago.preferences.create(preference);
+    const result = await client.preferences.create(preference); // Asegúrate de usar "client" y no "mercadopago"
+    console.log(result); // Para depuración
 
     res.json({ id: result.body.id });
   } catch (error) {
@@ -67,5 +69,5 @@ app.post("/create_preference", async (req, res) => {
 
 // Inicia el servidor
 app.listen(port, () => {
-  console.log(Servidor corriendo en el puerto ${port});
+  console.log(`Servidor corriendo en el puerto ${port}`);
 });
