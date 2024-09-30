@@ -2,8 +2,6 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-
-// SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from "mercadopago"; // Mantengo Mercado Pago sin cambios
 
 // Agrega credenciales de Mercado Pago
@@ -16,17 +14,16 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 // Middleware para permitir peticiones desde diferentes orígenes y procesar JSON
 app.use(cors());
 app.use(express.json());
 
-// Configuración para servir la carpeta 'css'
-app.use("/css", express.static(path.join(__dirname, 'css')));
-
-// Configuración para servir otros archivos estáticos desde la carpeta raíz
-app.use(express.static(path.join(__dirname)));
+// Configuración para servir archivos estáticos
+app.use("/css", express.static(path.join(__dirname, 'css'))); // Sirve los archivos CSS
+app.use("/js", express.static(path.join(__dirname, 'js'))); // Sirve los archivos JS
+app.use("/img", express.static(path.join(__dirname, 'img'))); // Sirve las imágenes
+app.use("/json", express.static(path.join(__dirname, 'json'))); // Sirve el JSON (productos.json)
 
 // Ruta para servir 'index.html'
 app.get("/", (req, res) => {
@@ -36,11 +33,6 @@ app.get("/", (req, res) => {
 // Ruta para servir 'tienda.html'
 app.get("/tienda", (req, res) => {
   res.sendFile(path.join(__dirname, 'tienda.html'));
-});
-
-// Ruta para enviar productos.json al acceder a /tienda
-app.get("/tienda/productos", (req, res) => {
-  res.sendFile(path.join(__dirname, 'productos.json'));
 });
 
 // Ruta para servir 'carrito.html'
@@ -82,7 +74,16 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
-// Inicia el servidor
-app.listen(port, () => {
-  console.log(`El servidor está corriendo en el puerto ${port}`);
+// Rutas para servir archivos estáticos, asegurando que tengan el MIME type correcto
+app.use("/main.js", (req, res) => {
+  res.type('application/javascript'); // Asegura el tipo MIME correcto para JS
+  res.sendFile(path.join(__dirname, 'js', 'main.js'));
 });
+
+app.use("/menu.js", (req, res) => {
+  res.type('application/javascript'); // Asegura el tipo MIME correcto para JS
+  res.sendFile(path.join(__dirname, 'js', 'menu.js'));
+});
+
+// Exportamos el handler de Express para Vercel
+export default app;

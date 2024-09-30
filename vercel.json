@@ -2,10 +2,6 @@
   "version": 2,
   "routes": [
     {
-      "src": "/tienda/productos",
-      "dest": "/api/productos.json"
-    },
-    {
       "src": "/tienda",
       "dest": "/api/tienda.html"
     },
