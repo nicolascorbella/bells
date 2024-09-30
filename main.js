@@ -18,11 +18,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware para permitir CORS y parsear JSON
-app.use(cors({
-  origin: "https://miappdesplegada.com", // Cambia esto por el dominio de tu aplicación frontend
-  methods: ["GET", "POST"], // Métodos permitidos
-  allowedHeaders: ["Content-Type"], // Cabeceras permitidas
-}));
+app.use(cors());
 app.use(express.json());
 
 // Servir archivos estáticos (CSS, imágenes, JavaScript) desde el directorio actual
@@ -60,7 +56,7 @@ app.post("/create_preference", async (req, res) => {
       auto_return: "approved",
     };
 
-    const result = await client.preferences.create(preference); // Cambié `mercadopago` a `client`
+    const result = await mercadopago.preferences.create(preference);
 
     res.json({ id: result.body.id });
   } catch (error) {
@@ -71,5 +67,5 @@ app.post("/create_preference", async (req, res) => {
 
 // Inicia el servidor
 app.listen(port, () => {
-  console.log(`Servidor corriendo en el puerto ${port}`);
+  console.log(Servidor corriendo en el puerto ${port});
 });
