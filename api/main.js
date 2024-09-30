@@ -91,8 +91,15 @@ app.use("/menu.js", (req, res) => {
   res.sendFile(path.join(__dirname, 'js', 'menu.js'));
 });
 
-// Ruta para manejar preflight request (CORS)
-app.options("/create_preference", cors(corsOptions)); // Asegura que las solicitudes preflight sean manejadas correctamente
+// Manejar solicitudes preflight (OPTIONS)
+app.options("/create_preference", (req, res) => {
+  res.set('Access-Control-Allow-Origin', 'https://www.bairesrealestate.online');
+  res.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+  res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.set('Access-Control-Allow-Credentials', 'true');
+  res.sendStatus(200); // Responder sin redirecciones
+});
+
 
 // Exportamos el handler de Express para Vercel
 export default app;
