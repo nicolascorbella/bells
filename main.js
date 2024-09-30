@@ -21,6 +21,7 @@ const port = process.env.PORT || 3000;
 // Middleware para permitir CORS y parsear JSON
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Servir archivos estáticos (CSS, imágenes, JavaScript) desde el directorio actual
 app.use(express.static(__dirname));
