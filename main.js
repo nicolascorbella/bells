@@ -21,14 +21,21 @@ const port = process.env.PORT || 3000;
 // Middleware para permitir CORS y parsear JSON
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Servir archivos estáticos (CSS, imágenes, JavaScript) desde el directorio actual
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'public'))); // Sirve archivos estáticos desde la carpeta 'public'
 
 // Ruta para servir el archivo index.html cuando se accede a la raíz "/"
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
+});
+
+// Ruta para la tienda
+app.get("/tienda", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "tienda.html")); // Asegúrate de tener 'tienda.html' en 'public'
+});
+
+// Ruta para el carrito
+app.get("/carrito", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "carrito.html")); // Asegúrate de tener 'carrito.html' en 'public'
 });
 
 // Ruta para crear una preferencia de pago en Mercado Pago
