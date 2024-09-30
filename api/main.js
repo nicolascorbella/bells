@@ -16,7 +16,13 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Middleware para permitir peticiones desde diferentes orígenes y procesar JSON
-app.use(cors());
+const corsOptions = {
+  origin: 'https://www.bairesrealestate.online', // Permitir solicitudes desde este dominio
+  methods: ['GET', 'POST', 'OPTIONS'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
+  credentials: true, // Permitir cookies, tokens, etc.
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Configuración para servir archivos estáticos
@@ -84,6 +90,9 @@ app.use("/menu.js", (req, res) => {
   res.type('application/javascript'); // Asegura el tipo MIME correcto para JS
   res.sendFile(path.join(__dirname, 'js', 'menu.js'));
 });
+
+// Ruta para manejar preflight request (CORS)
+app.options("/create_preference", cors(corsOptions)); // Asegura que las solicitudes preflight sean manejadas correctamente
 
 // Exportamos el handler de Express para Vercel
 export default app;
