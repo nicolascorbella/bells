@@ -2,48 +2,31 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import { MercadoPagoConfig, Preference } from "mercadopago"; // Mantengo Mercado Pago sin cambios
+import { MercadoPagoConfig, Preference } from "mercadopago";
 
-// Agrega credenciales de Mercado Pago
 const client = new MercadoPagoConfig({
   accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
 });
 
-// Obtener el directorio actual
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Middleware para permitir peticiones desde diferentes orígenes y procesar JSON
+// Configuración de CORS
 const corsOptions = {
-  origin: 'https://www.bairesrealestate.online', // Permitir solicitudes desde este dominio
-  methods: ['GET', 'POST', 'OPTIONS'], // Métodos permitidos
-  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
-  credentials: true, // Permitir cookies, tokens, etc.
+  origin: 'https://www.bairesrealestate.online',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,  // Permitir envío de credenciales si es necesario
 };
+
 app.use(cors(corsOptions));
 app.use(express.json());
 
-// Configuración para servir archivos estáticos
-app.use("/css", express.static(path.join(__dirname, 'css'))); // Sirve los archivos CSS
-app.use("/js", express.static(path.join(__dirname, 'js'))); // Sirve los archivos JS
-app.use("/img", express.static(path.join(__dirname, 'img'))); // Sirve las imágenes
-app.use("/json", express.static(path.join(__dirname, 'json'))); // Sirve el JSON (productos.json)
-
-// Ruta para servir 'index.html'
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
-
-// Ruta para servir 'tienda.html'
-app.get("/tienda", (req, res) => {
-  res.sendFile(path.join(__dirname, 'tienda.html'));
-});
-
-// Ruta para servir 'carrito.html'
-app.get("/carrito", (req, res) => {
-  res.sendFile(path.join(__dirname, 'carrito.html'));
+// Ruta para manejar las solicitudes preflight (OPTIONS)
+app.options('/create_preference', cors(corsOptions), (req, res) => {
+  res.sendStatus(204);  // Respuesta adecuada para preflight request
 });
 
 // Ruta para crear la preferencia de Mercado Pago
@@ -80,26 +63,11 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
-// Rutas para servir archivos estáticos, asegurando que tengan el MIME type correcto
+// Otras rutas y lógica...
 app.use("/main.js", (req, res) => {
-  res.type('application/javascript'); // Asegura el tipo MIME correcto para JS
+  res.type('application/javascript');
   res.sendFile(path.join(__dirname, 'js', 'main.js'));
 });
-
-app.use("/menu.js", (req, res) => {
-  res.type('application/javascript'); // Asegura el tipo MIME correcto para JS
-  res.sendFile(path.join(__dirname, 'js', 'menu.js'));
-});
-
-// Manejar solicitudes preflight (OPTIONS)
-app.options("/create_preference", (req, res) => {
-  res.set('Access-Control-Allow-Origin', 'https://www.bairesrealestate.online');
-  res.set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-  res.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.set('Access-Control-Allow-Credentials', 'true');
-  res.sendStatus(200); // Responder sin redirecciones
-});
-
 
 // Exportamos el handler de Express para Vercel
 export default app;
