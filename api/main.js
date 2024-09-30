@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+
+// SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from "mercadopago"; // Mantengo Mercado Pago sin cambios
 
 // Agrega credenciales de Mercado Pago
@@ -14,6 +16,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Middleware para permitir peticiones desde diferentes orígenes y procesar JSON
 app.use(cors());
@@ -33,6 +36,11 @@ app.get("/", (req, res) => {
 // Ruta para servir 'tienda.html'
 app.get("/tienda", (req, res) => {
   res.sendFile(path.join(__dirname, 'tienda.html'));
+});
+
+// Ruta para enviar productos.json al acceder a /tienda
+app.get("/tienda/productos", (req, res) => {
+  res.sendFile(path.join(__dirname, 'productos.json'));
 });
 
 // Ruta para servir 'carrito.html'
@@ -74,5 +82,7 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
-// Exportamos el handler de Express para Vercel
-export default app;
+// Inicia el servidor
+app.listen(port, () => {
+  console.log(`El servidor está corriendo en el puerto ${port}`);
+});
