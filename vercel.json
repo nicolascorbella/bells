@@ -2,7 +2,15 @@
   "version": 2,
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/tienda",
+      "dest": "/api/main.js"
+    },
+    {
+      "src": "/carrito",
+      "dest": "/api/main.js"
+    },
+    {
+      "src": "/(.*)",
       "dest": "/api/main.js"
     }
   ]
