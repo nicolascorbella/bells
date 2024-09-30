@@ -3,15 +3,15 @@
   "routes": [
     {
       "src": "/tienda",
-      "dest": "/api/tienda.html"
+      "dest": "/tienda.html"
     },
     {
       "src": "/carrito",
-      "dest": "/api/carrito.html"
+      "dest": "/carrito.html"
     },
     {
       "src": "/(.*)",
-      "dest": "/api/main.js"
+      "dest": "/main.js"
     }
   ]
 }

@@ -4,7 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { MercadoPagoConfig, Preference } from "mercadopago"; // Mantengo Mercado Pago sin cambios
 
-// Agrega credenciales de Mercado Pago
+// Configura credenciales de Mercado Pago
 const client = new MercadoPagoConfig({
   accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
 });
@@ -14,28 +14,25 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // Middleware para permitir peticiones desde diferentes orígenes y procesar JSON
 app.use(cors());
 app.use(express.json());
 
 // Configuración para servir archivos estáticos
-app.use("/css", express.static(path.join(__dirname, 'css'))); // Sirve los archivos CSS
-app.use("/js", express.static(path.join(__dirname, 'js'))); // Sirve los archivos JS
-app.use("/img", express.static(path.join(__dirname, 'img'))); // Sirve las imágenes
-app.use("/json", express.static(path.join(__dirname, 'json'))); // Sirve el JSON (productos.json)
+app.use("/css", express.static(path.join(__dirname, 'css')));
+app.use(express.static(path.join(__dirname))); // Sirve la raíz para otros archivos estáticos
 
-// Ruta para servir 'index.html'
+// Rutas para servir archivos HTML
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Ruta para servir 'tienda.html'
 app.get("/tienda", (req, res) => {
   res.sendFile(path.join(__dirname, 'tienda.html'));
 });
 
-// Ruta para servir 'carrito.html'
 app.get("/carrito", (req, res) => {
   res.sendFile(path.join(__dirname, 'carrito.html'));
 });
@@ -43,12 +40,19 @@ app.get("/carrito", (req, res) => {
 // Ruta para crear la preferencia de Mercado Pago
 app.post("/create_preference", async (req, res) => {
   try {
+    // Verifica que se proporcionen los parámetros requeridos
+    const { title, quantity, price } = req.body;
+    if (!title || !quantity || !price) {
+      return res.status(400).json({ error: "Faltan parámetros requeridos" });
+    }
+
+    // Crea la preferencia de Mercado Pago
     const body = {
       items: [
         {
-          title: req.body.title,
-          quantity: Number(req.body.quantity),
-          unit_price: Number(req.body.price),
+          title: title,
+          quantity: Number(quantity),
+          unit_price: Number(price),
           currency_id: "ARS",
         },
       ],
@@ -63,27 +67,18 @@ app.post("/create_preference", async (req, res) => {
     const preference = new Preference(client);
     const result = await preference.create({ body });
 
-    res.json({
-      id: result.id,
-    });
+    // Devuelve la ID de la preferencia
+    res.json({ id: result.id });
   } catch (error) {
-    console.log(error);
+    console.error("Error al crear la preferencia:", error);
     res.status(500).json({
-      error: "Error al crear la preferencia :(",
+      error: "Error al crear la preferencia",
+      details: error.message,
     });
   }
 });
 
-// Rutas para servir archivos estáticos, asegurando que tengan el MIME type correcto
-app.use("/main.js", (req, res) => {
-  res.type('application/javascript'); // Asegura el tipo MIME correcto para JS
-  res.sendFile(path.join(__dirname, 'js', 'main.js'));
+// Inicia el servidor
+app.listen(port, () => {
+  console.log(`El servidor está corriendo en el puerto ${port}`);
 });
-
-app.use("/menu.js", (req, res) => {
-  res.type('application/javascript'); // Asegura el tipo MIME correcto para JS
-  res.sendFile(path.join(__dirname, 'js', 'menu.js'));
-});
-
-// Exportamos el handler de Express para Vercel
-export default app;
