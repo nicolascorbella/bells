@@ -2,12 +2,6 @@ import express from "express";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
-import { MercadoPagoConfig, Preference } from "mercadopago"; // Mantengo Mercado Pago sin cambios
-
-// Agrega credenciales de Mercado Pago
-const client = new MercadoPagoConfig({
-  accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
-});
 
 // Obtener el directorio actual
 const __filename = fileURLToPath(import.meta.url);
@@ -86,10 +80,6 @@ app.use("/main.js", (req, res) => {
   res.sendFile(path.join(__dirname, 'js', 'main.js'));
 });
 
-app.use("/menu.js", (req, res) => {
-  res.type('application/javascript'); // Asegura el tipo MIME correcto para JS
-  res.sendFile(path.join(__dirname, 'js', 'menu.js'));
-});
 
 // Ruta para manejar preflight request (CORS)
 app.options("/create_preference", cors(corsOptions)); // Asegura que las solicitudes preflight sean manejadas correctamente
