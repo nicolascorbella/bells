@@ -80,8 +80,9 @@ document.getElementById("checkout-btn").addEventListener("click", async () => {
     const preference = await response.json();
     createCheckoutButton(preference.id);
   } catch (error) {
-    alert("error :(");
-  }
+  alert(`Error: ${error.message}`);
+}
+
 });
 
 const createCheckoutButton = (preferenceId) => {
