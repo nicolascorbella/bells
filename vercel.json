@@ -3,10 +3,17 @@
   "routes": [
     {
       "src": "/",
+<<<<<<< HEAD
       "dest": "/client/index.html"
     },
     {
       "src": "/client/tienda",
+=======
+      "dest": "/index.html"
+    },
+    {
+      "src": "/tienda",
+>>>>>>> 5f23112ab630ba76d428b341088a5bc752594e23
       "dest": "/tienda.html"
     },
     {
