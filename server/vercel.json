@@ -3,15 +3,15 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/public/index.html"
+      "dest": "/server/public/index.html"
     },
     {
       "src": "/tienda",
-      "dest": "/public/tienda.html"
+      "dest": "/server/public/tienda.html"
     },
     {
       "src": "/carrito",
-      "dest": "/public/carrito.html"
+      "dest": "/server/public/carrito.html"
     },
     {
       "src": "/(.*)",
