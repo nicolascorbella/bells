@@ -23,7 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 // Sirve archivos estáticos desde la carpeta 'public'
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // Ruta para servir el archivo index.html cuando se accede a la raíz "/"
 app.get("/", (req, res) => {
