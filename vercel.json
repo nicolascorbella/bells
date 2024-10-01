@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/server/public/index.html"
+    },
+    {
+      "src": "/tienda",
+      "dest": "/server/public/tienda.html"
+    },
+    {
+      "src": "/carrito",
+      "dest": "/server/public/carrito.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/server/main.js"
+    }
+  ]
+}
