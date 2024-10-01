@@ -2,16 +2,20 @@
   "version": 2,
   "routes": [
     {
-      "src": "/tienda",
+      "src": "/",
+      "dest": "/client/index.html"
+    },
+    {
+      "src": "/client/tienda",
       "dest": "/tienda.html"
     },
     {
-      "src": "/carrito",
+      "src": "/client/carrito",
       "dest": "/carrito.html"
     },
     {
       "src": "/(.*)",
-      "dest": "/main.js"
+      "dest": "/server/main.js"
     }
   ]
 }
