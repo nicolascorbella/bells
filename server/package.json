@@ -13,6 +13,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.0",
-    "mercadopago": "^2.0.15"
+    "mercadopago": "^2.0.15",
+    "node": "^22.9.0",
+    "path": "^0.12.7"
   }
 }
