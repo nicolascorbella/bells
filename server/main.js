@@ -16,7 +16,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 // Middleware para permitir CORS y parsear JSON
 app.use(cors());
@@ -77,7 +76,6 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
-// Inicia el servidor
-app.listen(port, () => {
-  console.log(`Servidor corriendo en el puerto ${port}`);
-});
+// Exporta el servidor de Express para que funcione como una serverless function en Vercel
+export default app;
+
