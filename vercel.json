@@ -1,18 +1,12 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "server/main.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
-    {
-      "src": "/",
-      "dest": "/server/public/index.html"
-    },
-    {
-      "src": "/tienda",
-      "dest": "/server/public/tienda.html"
-    },
-    {
-      "src": "/carrito",
-      "dest": "/server/public/carrito.html"
-    },
     {
       "src": "/(.*)",
       "dest": "/server/main.js"
