@@ -18,7 +18,9 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Middleware para permitir CORS y parsear JSON
-app.use(cors());
+app.use(cors({
+  origin: "https://www.bairesrealestate.online", // Permitir solo tu dominio
+}));
 app.use(express.json());
 
 // Sirve archivos estáticos desde la carpeta 'public'
@@ -44,6 +46,7 @@ app.post("/create_preference", async (req, res) => {
   try {
     const { title, quantity, price } = req.body;
 
+    // Validar que los parámetros estén presentes y sean correctos
     if (!title || !quantity || !price) {
       return res.status(400).json({ error: "Faltan parámetros requeridos" });
     }
@@ -59,9 +62,9 @@ app.post("/create_preference", async (req, res) => {
         },
       ],
       back_urls: {
-        success: "https://tusitio.com/success",
-        failure: "https://tusitio.com/failure",
-        pending: "https://tusitio.com/pending",
+        success: "https://www.bairesrealestate.online/success", // Ajusta esta URL
+        failure: "https://www.bairesrealestate.online/failure", // Ajusta esta URL
+        pending: "https://www.bairesrealestate.online/pending", // Ajusta esta URL
       },
       auto_return: "approved",
     };
@@ -71,11 +74,16 @@ app.post("/create_preference", async (req, res) => {
 
     res.json({ id: result.body.id });
   } catch (error) {
-    console.error("Error al crear la preferencia:", error);
-    res.status(500).json({ error: "No se pudo crear la preferencia" });
+    console.error("Error al crear la preferencia:", error.message); // Mensaje de error
+    res.status(500).json({ error: "No se pudo crear la preferencia", details: error.message });
   }
+});
+
+// Iniciar el servidor en un puerto específico
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 
 // Exporta el servidor de Express para que funcione como una serverless function en Vercel
 export default app;
-
