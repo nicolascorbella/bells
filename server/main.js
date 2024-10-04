@@ -2,13 +2,11 @@ import express from "express";
 import cors from "cors";
 import path from "path"; // Para manejar rutas de archivos
 import { fileURLToPath } from "url"; // Para obtener el directorio actual
+import mercadopago from "mercadopago"; // Cambiado a la importación correcta
 
-// SDK de Mercado Pago
-import { MercadoPagoConfig } from "mercadopago";
-
-// Agrega credenciales
-const client = new MercadoPagoConfig({
-  accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
+// Configura el SDK de Mercado Pago
+mercadopago.configure({
+  access_token: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
 });
 
 // Obtener el directorio actual en ESM (equivalente a __dirname)
@@ -28,17 +26,17 @@ app.use(express.static(path.join(__dirname, './public')));
 
 // Ruta para servir el archivo index.html cuando se accede a la raíz "/"
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html")); // Esto carga el 'index.html' desde 'public'
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 // Ruta para la tienda
 app.get("/tienda", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "tienda.html")); // Ruta directa al archivo tienda.html
+  res.sendFile(path.join(__dirname, "public", "tienda.html"));
 });
 
 // Ruta para el carrito
 app.get("/carrito", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "carrito.html")); // Ruta directa al archivo carrito.html
+  res.sendFile(path.join(__dirname, "public", "carrito.html"));
 });
 
 // Ruta para crear una preferencia de pago en Mercado Pago
@@ -69,7 +67,7 @@ app.post("/create_preference", async (req, res) => {
       auto_return: "approved",
     };
 
-    const result = await client.preferences.create(preference); // Usando "client" para crear la preferencia
+    const result = await mercadopago.preferences.create(preference); // Cambiado a mercadopago
     console.log(result); // Para depuración
 
     res.json({ id: result.body.id });
