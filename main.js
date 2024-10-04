@@ -1,44 +1,35 @@
 import express from "express";
 import cors from "cors";
-import path from "path"; // Necesario para manejar rutas de archivos
-import { fileURLToPath } from "url"; // Para obtener el directorio actual
-
-// SDK de Mercado Pago
+import path from "path"; 
+import { fileURLToPath } from "url"; 
 import { MercadoPagoConfig } from "mercadopago";
 
-// Agrega credenciales
 const client = new MercadoPagoConfig({
-  accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
+  accessToken: "TU_ACCESS_TOKEN",
 });
 
-// Obtener el directorio actual en ESM (equivalente a __dirname)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware para permitir CORS y parsear JSON
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public'))); // Sirve archivos estáticos desde la carpeta 'public'
+app.use(express.static(path.join(__dirname, './public')));
 
-// Ruta para servir el archivo index.html cuando se accede a la raíz "/"
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Ruta para la tienda
 app.get("/tienda", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "tienda.html")); // Asegúrate de tener 'tienda.html' en 'public'
+  res.sendFile(path.join(__dirname, "public", "tienda.html"));
 });
 
-// Ruta para el carrito
 app.get("/carrito", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "carrito.html")); // Asegúrate de tener 'carrito.html' en 'public'
+  res.sendFile(path.join(__dirname, "public", "carrito.html"));
 });
 
-// Ruta para crear una preferencia de pago en Mercado Pago
 app.post("/create_preference", async (req, res) => {
   try {
     const { title, quantity, price } = req.body;
@@ -47,7 +38,6 @@ app.post("/create_preference", async (req, res) => {
       return res.status(400).json({ error: "Faltan parámetros requeridos" });
     }
 
-    // Creación de preferencia
     const preference = {
       items: [
         {
@@ -65,8 +55,8 @@ app.post("/create_preference", async (req, res) => {
       auto_return: "approved",
     };
 
-    const result = await client.preferences.create(preference); // Asegúrate de usar "client" y no "mercadopago"
-    console.log(result); // Para depuración
+    const result = await client.preferences.create(preference); 
+    console.log(result); 
 
     res.json({ id: result.body.id });
   } catch (error) {
@@ -75,7 +65,4 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
-// Inicia el servidor
-app.listen(port, () => {
-  console.log(`Servidor corriendo en el puerto ${port}`);
-});
+export default app; // Asegúrate de exportar la app para Vercel
