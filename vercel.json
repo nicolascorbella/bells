@@ -15,7 +15,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/server/main.js"
+      "dest": "/server/public/main.js"
     }
   ]
 }
