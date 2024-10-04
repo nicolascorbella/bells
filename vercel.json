@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/create_preference",
+      "dest": "/server/main.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "/server/main.js"
     }
