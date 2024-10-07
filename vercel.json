@@ -9,6 +9,7 @@
   "routes": [
     {
       "src": "/create_preference",
+      "methods": ["POST"],
       "dest": "/server/main.js"
     },
     {
