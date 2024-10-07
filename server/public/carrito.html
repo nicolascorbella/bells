@@ -124,11 +124,16 @@ document.getElementById("checkout-btn").addEventListener("click", async () => {
     );
 
     // Crea los datos de la orden usando el totalCalculado
-    const orderData = {
-      title: "Compra en Baires Real Estate", // Puedes ajustar esto a un título genérico
-      quantity: 1, // Cantidad fija en 1
-      price: totalCalculado, // Utiliza el total calculado del carrito
-    };
+const orderData = {
+  items: [
+    {
+      title: "Compra en Baires Real Estate",
+      quantity: 1,
+      unit_price: totalCalculado, // Utiliza el total calculado del carrito
+    }
+  ]
+};
+
 
     // Enviar los datos de la orden al servidor
     const response = await fetch("https://www.bairesrealestate.online/create_preference", {
