@@ -82,7 +82,8 @@ app.post("/create_preference", async (req, res) => {
 // Iniciar el servidor en un puerto específico
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(Servidor escuchando en el puerto ${PORT});
+console.log(`Servidor escuchando en el puerto ${PORT}`)
+
 });
 
 // Exporta el servidor de Express para que funcione como una serverless function en Vercel
