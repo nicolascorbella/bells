@@ -44,41 +44,35 @@ app.get("/carrito", (req, res) => {
 // Ruta para crear una preferencia de pago en Mercado Pago
 app.post("/create_preference", async (req, res) => {
   try {
-    const { title, quantity, price } = req.body;
-
-    // Validar que los parámetros estén presentes y sean correctos
-    if (!title || !quantity || !price) {
-      return res.status(400).json({ error: "Faltan parámetros requeridos" });
-    }
-
-    // Creación de preferencia
-    const preference = {
+    const body = {
       items: [
         {
-          title,
-          quantity: Number(quantity),
-          unit_price: Number(price),
+          title: req.body.title,
+          quantity: Number(req.body.quantity),
+          unit_price: Number(req.body.price),
           currency_id: "ARS",
         },
       ],
       back_urls: {
-        success: "https://www.bairesrealestate.online/success", // Ajusta esta URL
-        failure: "https://www.bairesrealestate.online/failure", // Ajusta esta URL
-        pending: "https://www.bairesrealestate.online/pending", // Ajusta esta URL
+        success: "https://www.youtube.com/@onthecode",
+        failure: "https://www.youtube.com/@onthecode",
+        pending: "https://www.youtube.com/@onthecode",
       },
       auto_return: "approved",
     };
 
-    const result = await client.preferences.create(preference); // Usando "client" para crear la preferencia
-    console.log(result); // Para depuración
-
-    res.json({ id: result.body.id });
+    const preference = new Preference(client);
+    const result = await preference.create({ body });
+    res.json({
+      id: result.id,
+    });
   } catch (error) {
-    console.error("Error al crear la preferencia:", error.message); // Mensaje de error
-    res.status(500).json({ error: "No se pudo crear la preferencia", details: error.message });
+    console.log(error);
+    res.status(500).json({
+      error: "Error al crear la preferencia :(",
+    });
   }
 });
-
 // Iniciar el servidor en un puerto específico
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
