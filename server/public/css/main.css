@@ -933,7 +933,7 @@ footer p {
   margin-top: 25%;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 56.25em) {
   .hamburger-menu, .sidebar {
     display: none;
   }
