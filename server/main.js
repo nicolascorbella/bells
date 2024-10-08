@@ -7,7 +7,7 @@ import { fileURLToPath } from "url"; // Para obtener el directorio actual
 import { MercadoPagoConfig, Preference } from "mercadopago";
 // Agrega credenciales
 const client = new MercadoPagoConfig({
-  accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
+  accessToken: "APP_USR-1935091980734919-092313-dac02186b864d3a6e68be45881369cb0-229579824",
 });
 
 // Obtener el directorio actual en ESM (equivalente a __dirname)
