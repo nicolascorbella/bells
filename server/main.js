@@ -45,6 +45,10 @@ app.get("/tienda", (req, res) => {
 app.get("/carrito", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "carrito.html")); // Ruta directa al archivo carrito.html
 });
+// Ruta para la calavera
+app.get("/calavera", (req, res) => {
+  res.sendFile(path.join(__dirname, "public","campanas","calavera", "index.html")); // Ruta directa al archivo tienda.html
+});
 
 // Ruta para crear una preferencia de pago en Mercado Pago
 app.post("/create_preference", async (req, res) => {
