@@ -142,6 +142,7 @@ document.getElementById("checkout-btn").addEventListener("click", async () => {
     });
 
     const preference = await response.json();
+    
     // Verifica si el botón ya ha sido creado
     if (!buttonCreated) {
       createCheckoutButton(preference.id);
@@ -154,8 +155,7 @@ document.getElementById("checkout-btn").addEventListener("click", async () => {
   }
 });
 
-// Resto de tu código...
-
+// Función para crear el botón en un modal
 const createCheckoutButton = (preferenceId) => {
   const bricksBuilder = mp.bricks();
 
@@ -165,7 +165,7 @@ const createCheckoutButton = (preferenceId) => {
     // Aquí se agrega el modo modal
     await bricksBuilder.create("wallet", "wallet_container", {
       initialization: {
-        preferenceId: preferenceId,
+        preferenceId: preferenceId, // El ID de la preferencia creado en el servidor
       },
       render: {
         container: ".wallet-container", // El contenedor donde se renderizará el checkout
@@ -173,8 +173,10 @@ const createCheckoutButton = (preferenceId) => {
       },
     });
   };
+
   renderComponent();
 };
+
 
     
     // ------------------ Carrito de Compras ------------------
