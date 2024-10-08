@@ -254,6 +254,16 @@
     const ctaLink = document.getElementById('cta-link');
     
     if (cta && ctaLink) {
-        ctaLink.addEventListener('click', function (e) {</script>
+        ctaLink.addEventListener('click', function (e) {
+            e.preventDefault(); // Evita la redirección inmediata
+            cta.classList.add('hide'); // Añade la clase para la animación de desaparición
+
+            // Después de 1 segundo (igual al tiempo de la animación), redirige al enlace
+            setTimeout(() => {
+                window.location.href = ctaLink.href;
+            }, 1000); // 1000 milisegundos = 1 segundo
+        });
+    }
+});</script>
   </body>
 </html>
