@@ -4,8 +4,7 @@ import path from "path"; // Para manejar rutas de archivos
 import { fileURLToPath } from "url"; // Para obtener el directorio actual
 
 // SDK de Mercado Pago
-import { MercadoPagoConfig } from "mercadopago";
-
+import { MercadoPagoConfig, Preference } from "mercadopago";
 // Agrega credenciales
 const client = new MercadoPagoConfig({
   accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
