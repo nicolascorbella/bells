@@ -60,7 +60,6 @@
 <script >const mp = new MercadoPago("TEST-830121ba-ef1a-40bb-a8f4-f5f5d035e728", {
   locale: "es-AR",
 });
-
 document.getElementById("checkout-btn").addEventListener("click", async () => {
   try {
     const orderData = {
@@ -69,22 +68,18 @@ document.getElementById("checkout-btn").addEventListener("click", async () => {
       price: 100,
     };
 
-    const response = await fetch("https://www.bairesrealestate.online/create_preference", {
+    const response = await fetch("http://wwww.bairesrealestate.online/create_preference", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Corregido de "application/js" a "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(orderData),
     });
 
-    if (!response.ok) {
-      throw new Error(`Error en la creación de la preferencia: ${response.statusText}`);
-    }
-
     const preference = await response.json();
     createCheckoutButton(preference.id);
   } catch (error) {
-    alert(`Error: ${error.message}`);
+    alert("error :(");
   }
 });
 
