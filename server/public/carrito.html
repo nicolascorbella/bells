@@ -129,7 +129,7 @@ const orderData = {
     {
       title: "Compra en Baires Real Estate",
       quantity: 1,
-      unit_price: totalCalculado, // Utiliza el total calculado del carrito
+      price: totalCalculado, // Utiliza el total calculado del carrito
     }
   ]
 };
@@ -157,17 +157,13 @@ const createCheckoutButton = (preferenceId) => {
   const renderComponent = async () => {
     if (window.checkoutButton) window.checkoutButton.unmount();
 
-    // Aquí se agrega el modo modal
     await bricksBuilder.create("wallet", "wallet_container", {
       initialization: {
         preferenceId: preferenceId,
       },
-      render: {
-        container: ".wallet-container", // El contenedor donde se renderizará el checkout
-        modal: true, // Habilita el modo modal
-      },
     });
   };
+
   renderComponent();
 };
 
