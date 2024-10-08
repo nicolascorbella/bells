@@ -23,7 +23,13 @@ app.use(cors({
 app.use(express.json());
 
 // Sirve archivos estáticos desde la carpeta 'public'
-app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, './public'), {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.webp')) {
+      res.setHeader('Content-Type', 'image/webp');
+    }
+  }
+}));
 
 // Ruta para servir el archivo index.html cuando se accede a la raíz "/"
 app.get("/", (req, res) => {
@@ -75,8 +81,7 @@ app.post("/create_preference", async (req, res) => {
 // Iniciar el servidor en un puerto específico
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-console.log(`Servidor escuchando en el puerto ${PORT}`)
-
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 
 // Exporta el servidor de Express para que funcione como una serverless function en Vercel
