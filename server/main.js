@@ -18,7 +18,7 @@ const app = express();
 
 // Middleware para permitir CORS y parsear JSON
 app.use(cors({
-  origin: "https://www.bairesrealestate.online", // Permitir solo tu dominio
+  origin: "https://www.theguardianbell.com.ar", // Permitir solo tu dominio
 }));
 
 app.use(express.json());
