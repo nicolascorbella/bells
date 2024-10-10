@@ -56,9 +56,9 @@
     <nav>
       <a href="https://deltarealesate.com"><div>Inicio</div></a>
       <div class="headerline"></div>
-      <a href="https://deltarealesate.com/tienda"><div>Tienda</div></a>
+      <a href="/tienda"><div>Tienda</div></a>
       <div class="headerline"></div>
-      <div><a href="https://deltarealesate.com/historia">La leyenda de la campanas</div></a>
+      <div><a href="/historia">La leyenda de la campanas</div></a>
       <div class="headerline"></div>
       
     </nav>
@@ -133,7 +133,7 @@ document.getElementById("checkout-btn").addEventListener("click", async () => {
     };
 
     // Enviar los datos de la orden al servidor
-    const response = await fetch("https://www.theguardianbell.com.ar/create_preference", {
+    const response = await fetch("https://theguardianbell.com.ar/create_preference", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
