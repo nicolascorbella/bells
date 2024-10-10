@@ -8,6 +8,11 @@
   ],
   "routes": [
     {
+      "src": "/(.*)", 
+      "headers": { "Location": "https://theguardianbell.com.ar/$1" }, 
+      "status": 301
+    },
+    {
       "src": "/create_preference",
       "methods": ["POST"],
       "dest": "/server/main.js"
