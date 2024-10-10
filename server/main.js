@@ -18,7 +18,9 @@ const app = express();
 
 // Middleware para permitir CORS y parsear JSON
 app.use(cors({
-  origin: ["https://www.theguardianbell.com.ar", "https://theguardianbell.com.ar"], // Permite ambas variantes
+  origin: "*", // Permite todos los orígenes temporalmente para pruebas
+  methods: ["GET", "POST"], // Especifica los métodos permitidos
+  allowedHeaders: ["Content-Type", "Authorization"], // Define los encabezados permitidos
 }));
 
 app.use(express.json());
