@@ -155,9 +155,10 @@ header a {
   position: absolute; /* Permite usar left y transform */
   left: 50%; /* Posiciona el logo en el centro horizontal */
   transform: translateX(-50%); /* Centra el logo correctamente */
-  border-radius: 5px;
+  border-radius: 46%; /* Hace que el elemento sea un círculo */
   top: 0.5em;
   margin-top: -0.5%;
+  overflow: hidden; /* Asegura que si hay contenido dentro, se recorte en la forma circular */
 }
 
 .shopping_bag {
@@ -222,7 +223,7 @@ ul {
 }
 
 .diapositiva-pc img {
-  outline: 9px solid rgb(255, 255, 255);
+  box-shadow: 0 7px 0 0 rgb(199, 151, 89); /* Sombra solo en la parte inferior */
 }
 
 /* Estilos para las imágenes dentro del contenedor de la diapositiva-mobile */
@@ -272,26 +273,18 @@ article {
   text-align: center;
 }
 
-article h2 {
-  color: rgb(199, 151, 89);
-  line-height: 32px;
-  position: absolute;
-}
-
 .destacados-h2 {
   font-size: 54px;
   position: absolute;
   z-index: 2;
-  color: rgb(199, 151, 89);
-  top: 85vw; /* Ajusta la posición vertical según sea necesario */
-  left: 50%; /* Posiciona el h2 en el 50% del contenedor */
-  transform: translateX(-50%); /* Ajusta para centrar horizontalmente */
+  color: white;
   width: 99vw;
   text-align: center;
-  color: #1F2123;
   text-shadow: -1px -1px 0 rgba(199, 151, 89, 0.2823529412), 1px -1px 0 #C79759, -1px 1px 0 #C79759, 1px 1px 0 rgba(199, 151, 89, 0.7882352941);
   padding: 1em;
   transition: ease-in-out 1s;
+  bottom: 85%;
+  text-align: center;
 }
 
 .destacados {
@@ -933,7 +926,7 @@ footer p {
   margin-top: 25%;
 }
 
-@media (min-width: 56.25em) {
+@media (min-width: 900px) {
   .hamburger-menu, .sidebar {
     display: none;
   }
