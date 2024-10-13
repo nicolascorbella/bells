@@ -108,35 +108,35 @@
 
             </div>
             <!-- Modal del Formulario -->
-<div id="modal-formulario" class="modal">
-  <div class="modal-contenido">
-      <span class="cerrar">&times;</span>
-      <h3>Detalles de la compra</h3>
-      <form id="formulario-compra">
-          <label for="nombre">Nombre y apellido:</label>
-          <input type="text" id="nombre" name="nombre" required>
-
-          <label for="retiro">Método de entrega:</label>
-          <select id="metodo-entrega" name="metodo-entrega" required>
-              <option value="retiro">Retiro en local</option>
-              <option value="envio">Envío a domicilio</option>
-          </select>
-
-          <div id="informacion-envio" style="display:none;">
-              <label for="localidad">Localidad:</label>
-              <input type="text" id="localidad" name="localidad">
-              
-              <label for="calle">Calle:</label>
-              <input type="text" id="calle" name="calle">
-              
-              <label for="horario">Horario de envío:</label>
-              <input type="text" id="horario" name="horario">
-          </div>
-
-          <button type="submit">Continuar con el pago</button>
-      </form>
-  </div>
-</div>
+            <div id="modal-formulario" class="modal">
+              <div class="modal-contenido">
+                <span class="">&times;</span>
+                <h3>Detalles de la compra</h3>
+                <form id="formulario-compra">
+                  <label for="nombre">Nombre y apellido:</label>
+                  <input type="text" id="nombre" name="nombre" required>
+            
+                  <label for="metodo-entrega">Método de entrega:</label>
+                  <select id="metodo-entrega" name="metodo-entrega" required>
+                    <option value="retiro">Retiro en local</option>
+                    <option value="envio">Envío a domicilio</option>
+                  </select>
+            
+                  <div id="informacion-envio" style="display: none;">
+                    <label for="localidad">Localidad:</label>
+                    <input type="text" id="localidad" name="localidad">
+            
+                    <label for="calle">Calle:</label>
+                    <input type="text" id="calle" name="calle">
+            
+                    <label for="horario">Horario de envío:</label>
+                    <input type="text" id="horario" name="horario">
+                  </div>
+            
+                  <button type="submit">Continuar con el pago</button>
+                </form>
+              </div>
+            </div>
         </main>
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -162,7 +162,7 @@ if (sessionStorage.getItem("formularioEnviado")) {
 
 // Mostrar el modal del formulario
 const modal = document.getElementById("modal-formulario");
-modal.style.display = "block";
+modal.style.display = "flex";
 
 // Cerrar el modal cuando se hace clic en el botón "x"
 const spanCerrar = document.querySelector(".cerrar");
