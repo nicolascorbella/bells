@@ -141,62 +141,63 @@
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>document.getElementById("checkout-btn").addEventListener("click", function() {
-      // Mostrar el modal del formulario
-      const modal = document.getElementById("modal-formulario");
-      modal.style.display = "block";
-    });
-    
-    // Cerrar el modal cuando se hace clic en el botón "x"
-    const spanCerrar = document.querySelector(".cerrar");
-    spanCerrar.addEventListener("click", function() {
-      const modal = document.getElementById("modal-formulario");
-      modal.style.display = "none";
-    });
-    
-    // Cambiar los campos del formulario según el método de entrega
-    const metodoEntrega = document.getElementById("metodo-entrega");
-    const infoEnvio = document.getElementById("informacion-envio");
-    
-    metodoEntrega.addEventListener("change", function() {
-      if (this.value === "envio") {
-        infoEnvio.style.display = "block";
-      } else {
-        infoEnvio.style.display = "none";
-      }
-    });
-    
-    // Gestionar el envío del formulario
-    document.getElementById("formulario-compra").addEventListener("submit", function(e) {
-      e.preventDefault(); // Prevenir el envío del formulario
-    
-      // Verifica si los campos obligatorios están completos
-      const nombre = document.getElementById("nombre").value;
-      const metodoEntrega = document.getElementById("metodo-entrega").value;
-    
-      if (nombre && metodoEntrega) {
-        // Aquí puedes enviar la información al servidor o usarla antes de crear el botón de pago
-        console.log("Nombre:", nombre);
-        console.log("Método de entrega:", metodoEntrega);
-    
-        if (metodoEntrega === "envio") {
-          const localidad = document.getElementById("localidad").value;
-          const calle = document.getElementById("calle").value;
-          const horario = document.getElementById("horario").value;
-    
-          console.log("Localidad:", localidad);
-          console.log("Calle:", calle);
-          console.log("Horario de envío:", horario);
-        }
-    
-        // Ahora que los datos están completos, se puede proceder al pago con Mercado Pago
-        const modal = document.getElementById("modal-formulario");
-        modal.style.display = "none"; // Cierra el modal
-    
-        // Aquí activa el botón de MercadoPago
-        // Ejecuta el código que crea el botón de pago, como el que ya tienes en tu script
-      }
-    });
+    <script>document.getElementById("checkout-btn").addEventListener("click", function () {
+  // Mostrar el modal del formulario
+  const modal = document.getElementById("modal-formulario");
+  modal.style.display = "block";
+});
+
+// Cerrar el modal cuando se hace clic en el botón "x"
+const spanCerrar = document.querySelector(".cerrar");
+spanCerrar.addEventListener("click", function () {
+  const modal = document.getElementById("modal-formulario");
+  modal.style.display = "none";
+});
+
+// Cambiar los campos del formulario según el método de entrega
+const metodoEntrega = document.getElementById("metodo-entrega");
+const infoEnvio = document.getElementById("informacion-envio");
+
+metodoEntrega.addEventListener("change", function () {
+  if (this.value === "envio") {
+    infoEnvio.style.display = "block";
+  } else {
+    infoEnvio.style.display = "none";
+  }
+});
+
+// Gestionar el envío del formulario
+document.getElementById("formulario-compra").addEventListener("submit", function (e) {
+  e.preventDefault(); // Prevenir el envío del formulario
+
+  // Verifica si los campos obligatorios están completos
+  const nombre = document.getElementById("nombre").value;
+  const metodoEntrega = document.getElementById("metodo-entrega").value;
+
+  if (nombre && metodoEntrega) {
+    console.log("Nombre:", nombre);
+    console.log("Método de entrega:", metodoEntrega);
+
+    if (metodoEntrega === "envio") {
+      const localidad = document.getElementById("localidad").value;
+      const calle = document.getElementById("calle").value;
+      const horario = document.getElementById("horario").value;
+
+      console.log("Localidad:", localidad);
+      console.log("Calle:", calle);
+      console.log("Horario de envío:", horario);
+    }
+
+    // Ocultar el modal del formulario
+    const modal = document.getElementById("modal-formulario");
+    modal.style.display = "none";
+
+    // Aquí puedes añadir el código necesario para enviar los datos al servidor o realizar otras acciones
+    console.log("Formulario enviado correctamente");
+  } else {
+    console.error("Por favor, completa todos los campos obligatorios");
+  }
+});
     </script>
     <script>const mp = new MercadoPago("APP_USR-7edc8b84-c5af-4c5b-8914-db56155a5f52", {
   locale: "es-AR",
