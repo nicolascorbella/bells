@@ -5,10 +5,9 @@ import { fileURLToPath } from "url"; // Para obtener el directorio actual
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from "mercadopago";
-
 // Agrega credenciales
 const client = new MercadoPagoConfig({
-  accessToken: "TEST-1935091980734919-092313-fb425d565ca6bfba87ca53cc21b75e8c-229579824",
+  accessToken: "APP_USR-1935091980734919-092313-dac02186b864d3a6e68be45881369cb0-229579824",
 });
 
 // Obtener el directorio actual en ESM (equivalente a __dirname)
@@ -19,12 +18,19 @@ const app = express();
 
 // Middleware para permitir CORS y parsear JSON
 app.use(cors({
-  origin: "https://www.bairesrealestate.online", // Permitir solo tu dominio
+  origin: "https://www.theguardianbell.com.ar", // Permitir solo tu dominio
 }));
+
 app.use(express.json());
 
 // Sirve archivos estáticos desde la carpeta 'public'
-app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, './public'), {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.webp')) {
+      res.setHeader('Content-Type', 'image/webp');
+    }
+  }
+}));
 
 // Ruta para servir el archivo index.html cuando se accede a la raíz "/"
 app.get("/", (req, res) => {
@@ -40,50 +46,47 @@ app.get("/tienda", (req, res) => {
 app.get("/carrito", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "carrito.html")); // Ruta directa al archivo carrito.html
 });
+// Ruta para la calavera
+app.get("/calavera", (req, res) => {
+  res.sendFile(path.join(__dirname, "public","campanas","calavera", "index.html")); // Ruta directa al archivo tienda.html
+});
 
 // Ruta para crear una preferencia de pago en Mercado Pago
 app.post("/create_preference", async (req, res) => {
   try {
-    const { title, quantity, price } = req.body;
-
-    // Validar que los parámetros estén presentes y sean correctos
-    if (!title || !quantity || !price) {
-      return res.status(400).json({ error: "Faltan parámetros requeridos" });
-    }
-
-    // Creación de preferencia
-    const preference = {
+    const body = {
       items: [
         {
-          title,
-          quantity: Number(quantity),
-          unit_price: Number(price),
+          title: req.body.title,
+          quantity: Number(req.body.quantity),
+          unit_price: Number(req.body.price),
           currency_id: "ARS",
         },
       ],
       back_urls: {
-        success: "https://www.bairesrealestate.online/success", // Ajusta esta URL
-        failure: "https://www.bairesrealestate.online/failure", // Ajusta esta URL
-        pending: "https://www.bairesrealestate.online/pending", // Ajusta esta URL
+        success: "https://www.youtube.com/@onthecode",
+        failure: "https://www.youtube.com/@onthecode",
+        pending: "https://www.youtube.com/@onthecode",
       },
       auto_return: "approved",
     };
 
-    const result = await client.preferences.create(preference); // Usando "client" para crear la preferencia
-    console.log(result); // Para depuración
-
-    res.json({ id: result.body.id });
+    const preference = new Preference(client);
+    const result = await preference.create({ body });
+    res.json({
+      id: result.id,
+    });
   } catch (error) {
-    console.error("Error al crear la preferencia:", error.message); // Mensaje de error
-    res.status(500).json({ error: "No se pudo crear la preferencia", details: error.message });
+    console.log(error);
+    res.status(500).json({
+      error: "Error al crear la preferencia :(",
+    });
   }
 });
-
 // Iniciar el servidor en un puerto específico
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-console.log(`Servidor escuchando en el puerto ${PORT}`)
-
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 
 // Exporta el servidor de Express para que funcione como una serverless function en Vercel
