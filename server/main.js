@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import path from "path"; // Para manejar rutas de archivos
 import { fileURLToPath } from "url"; // Para obtener el directorio actual
+import nodemailer from "nodemailer"; // Importar Nodemailer
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from "mercadopago";
@@ -18,10 +19,18 @@ const app = express();
 
 // Middleware para permitir CORS y parsear JSON
 app.use(cors({
-  origin: "https://www.theguardianbell.com.ar", // Permitir solo tu dominio
+  origin: "https://www.bairesrealestate.online", // Permitir solo tu dominio
 }));
-
 app.use(express.json());
+
+// Configuración de Nodemailer
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: "nicolascorbellaortiz@gmail.com", // Tu correo Gmail
+    pass: "gpxt pdaz cdxj mbqb", // Contraseña de aplicación
+  },
+});
 
 // Sirve archivos estáticos desde la carpeta 'public'
 app.use(express.static(path.join(__dirname, './public'), {
@@ -46,9 +55,10 @@ app.get("/tienda", (req, res) => {
 app.get("/carrito", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "carrito.html")); // Ruta directa al archivo carrito.html
 });
+
 // Ruta para la calavera
 app.get("/calavera", (req, res) => {
-  res.sendFile(path.join(__dirname, "public","campanas","calavera", "index.html")); // Ruta directa al archivo tienda.html
+  res.sendFile(path.join(__dirname, "public", "campanas", "calavera", "index.html")); // Ruta directa al archivo calavera.html
 });
 
 // Ruta para crear una preferencia de pago en Mercado Pago
@@ -73,6 +83,23 @@ app.post("/create_preference", async (req, res) => {
 
     const preference = new Preference(client);
     const result = await preference.create({ body });
+
+    // Enviar correo con la información de la compra
+    const mailOptions = {
+      from: "nicolascorbellaortiz@gmail.com",
+      to: "nicolascorbellaortiz@gmail.com", // Envío a ti mismo para la prueba
+      subject: "Nueva compra en TheGuardianBell",
+      text: `¡Hola! Has recibido una compra de ${req.body.title} por un monto de ${req.body.price}.`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log("Error al enviar el correo:", error);
+      } else {
+        console.log("Correo enviado: " + info.response);
+      }
+    });
+
     res.json({
       id: result.id,
     });
@@ -83,6 +110,7 @@ app.post("/create_preference", async (req, res) => {
     });
   }
 });
+
 // Iniciar el servidor en un puerto específico
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
