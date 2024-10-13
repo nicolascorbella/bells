@@ -186,7 +186,7 @@ document.getElementById("formulario-compra").addEventListener("submit", function
     sessionStorage.setItem("telefonoUsuario", telefono);
 
     // Obtener datos adicionales si el método de entrega es "envio"
-    let localidad = "", calle = "", horario = "";
+    let localidad = "", calle = "", telefono = "";
     if (metodoEntrega === "envio") {
       localidad = document.getElementById("localidad").value;
       calle = document.getElementById("calle").value;
@@ -200,7 +200,6 @@ document.getElementById("formulario-compra").addEventListener("submit", function
       metodoEntrega: metodoEntrega,
       localidad: localidad,
       calle: calle,
-      horario: horario,
       price: totalPrice // Incluir el precio total
     };
 
