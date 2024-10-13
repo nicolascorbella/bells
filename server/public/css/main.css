@@ -393,7 +393,6 @@ form {
   height: 30px;
   width: 130px;
   margin-left: 0;
-  top: -0.2%;
   align-content: center;
   transition: 1s;
 }
@@ -1186,9 +1185,6 @@ footer p {
   }
   .footerline {
     width: 45em;
-  }
-  .masvendido {
-    top: 25%;
   }
   .galeria {
     margin-top: 20em;
