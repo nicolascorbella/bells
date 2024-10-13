@@ -145,6 +145,8 @@
   // Verificar si el formulario ya fue enviado en esta sesión
   if (sessionStorage.getItem("formularioEnviado")) {
     alert("Ya has completado el formulario en esta sesión.");
+    // Llamar a spanCerrar para cerrar el modal
+    spanCerrar.click(); // Cierra el modal
     return;
   }
 
