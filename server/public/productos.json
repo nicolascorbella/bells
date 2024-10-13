@@ -4,8 +4,8 @@
         "titulo": "Calavera",
         "imagen": "../campanas/calavera/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 1000
     },
@@ -14,8 +14,8 @@
         "titulo": "CruzMalta",
         "imagen": "../campanas/cruzmalta/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 1100
     },
@@ -24,8 +24,8 @@
         "titulo": "Paz",
         "imagen": "../campanas/paz/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 1200
     },
@@ -34,8 +34,8 @@
         "titulo": "Live",
         "imagen": "../campanas/live/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 1300
     },
@@ -44,8 +44,8 @@
         "titulo": "Unoporciento",
         "imagen": "../campanas/unoporciento/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 1400
     },
@@ -54,8 +54,8 @@
         "titulo": "Cruz Alada",
         "imagen": "../campanas/cruzalada/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 1500
     },
@@ -64,8 +64,8 @@
         "titulo": "Motocrucis",
         "imagen": "../campanas/motocrucis/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 1600
     },
@@ -74,8 +74,8 @@
         "titulo": "Lady Rider",
         "imagen": "../campanas/ladyrider/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 1700
     },
@@ -84,8 +84,8 @@
         "titulo": "Lucky13",
         "imagen": "../campanas/lucky13/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 1800
     },
@@ -94,8 +94,8 @@
         "titulo": "Manopla",
         "imagen": "../campanas/manopla/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 1900
     },
@@ -104,8 +104,8 @@
         "titulo": "Ruta66",
         "imagen": "../campanas/ruta66/img1.jpg",
         "categoria": {
-            "nombre": "Abrigos",
-            "id": "abrigos"
+            "nombre": "campanas",
+            "id": "campanas"
         },
         "precio": 2000
     }
