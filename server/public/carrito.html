@@ -144,7 +144,10 @@
     <script>document.getElementById("checkout-btn").addEventListener("click", function () {
   // Verificar si el formulario ya fue enviado en esta sesión
 if (sessionStorage.getItem("formularioEnviado")) {
-  alert(" ${nombre}, hemos guardado tus datos. Una vez hecha la compra recibirá un mensaje para que puedas ver el estado de envío.");
+  const nombre = sessionStorage.getItem("nombreUsuario"); // Recuperar el nombre guardado en el sessionStorage
+  
+  // Mostrar el mensaje personalizado con el nombre
+  alert(`${nombre}, hemos guardado tus datos. Una vez hecha la compra, recibirá un mensaje para que pueda ver el estado de envío.`);
   
   // Cerrar el modal
   const modal = document.getElementById("modal-formulario");
@@ -152,7 +155,6 @@ if (sessionStorage.getItem("formularioEnviado")) {
   
   return; // Termina la ejecución
 }
-
   // Mostrar el modal del formulario
   const modal = document.getElementById("modal-formulario");
   modal.style.display = "block";
