@@ -6,7 +6,8 @@ import nodemailer from "nodemailer"; // Importar Nodemailer
 
 // SDK de Mercado Pago
 import { MercadoPagoConfig, Preference } from "mercadopago";
-// Agrega credenciales
+
+// Agrega credenciales de Mercado Pago
 const client = new MercadoPagoConfig({
   accessToken: "APP_USR-1935091980734919-092313-dac02186b864d3a6e68be45881369cb0-229579824",
 });
@@ -84,22 +85,6 @@ app.post("/create_preference", async (req, res) => {
     const preference = new Preference(client);
     const result = await preference.create({ body });
 
-    // Enviar correo con la información de la compra
-    const mailOptions = {
-      from: "nicolascorbellaortiz@gmail.com",
-      to: "nicolascorbellaortiz@gmail.com", // Envío a ti mismo para la prueba
-      subject: "Nueva compra en TheGuardianBell",
-      text: `¡Hola! Has recibido una compra de ${req.body.title} por un monto de ${req.body.price}.`,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log("Error al enviar el correo:", error);
-      } else {
-        console.log("Correo enviado: " + info.response);
-      }
-    });
-
     res.json({
       id: result.id,
     });
@@ -111,6 +96,37 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
+// Nueva ruta para enviar el correo con los detalles de la compra
+app.post("/enviar_correo", (req, res) => {
+  const { nombre, metodoEntrega, localidad, calle, horario } = req.body;
+
+  // Configurar el mensaje según la información enviada
+  const mailOptions = {
+    from: "nicolascorbellaortiz@gmail.com",
+    to: "nicolascorbellaortiz@gmail.com",
+    subject: "Nueva compra confirmada",
+    text: `Detalles de la compra: 
+    - Nombre: ${nombre}
+    - Método de entrega: ${metodoEntrega}
+    ${metodoEntrega === "envio" ? `
+      - Localidad: ${localidad}
+      - Calle: ${calle}
+      - Horario: ${horario}` : ""}
+    `,
+  };
+
+  // Enviar el correo
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log("Error al enviar el correo:", error);
+      res.status(500).json({ success: false, error: "Error al enviar el correo" });
+    } else {
+      console.log("Correo enviado: " + info.response);
+      res.status(200).json({ success: true, message: "Correo enviado correctamente" });
+    }
+  });
+});
+
 // Iniciar el servidor en un puerto específico
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -119,3 +135,4 @@ app.listen(PORT, () => {
 
 // Exporta el servidor de Express para que funcione como una serverless function en Vercel
 export default app;
+
