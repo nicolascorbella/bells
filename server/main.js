@@ -101,21 +101,58 @@ app.post("/enviar_correo", (req, res) => {
   const { nombre, metodoEntrega, localidad, calle, horario } = req.body;
 
   // Configurar el mensaje según la información enviada
-  const mailOptions = {
-    from: "nicolascorbellaortiz@gmail.com",
-    to: "nicolascorbellaortiz@gmail.com",
-    subject: "Nueva compra confirmada",
-    text: `Detalles de la compra: 
-    - Nombre: ${nombre}
-    - Método de entrega: ${metodoEntrega}
-    ${metodoEntrega === "envio" ? `
-      - Localidad: ${localidad}
-      - Calle: ${calle}
-      - Horario: ${horario}` : ""}
-    -Precio: ${req.body.price}$ ars.
-    `,
-  };
-
+const mailOptions = {
+  from: "nicolascorbellaortiz@gmail.com",
+  to: "nicolascorbellaortiz@gmail.com",
+  subject: "Nueva compra confirmada",
+  html: `
+    <html>
+      <head>
+        <style>
+          body {
+            font-family: Arial, sans-serif;
+            color: #333;
+          }
+          h3 {
+            color: #0056b3;
+          }
+          ul {
+            list-style: none;
+            padding: 0;
+          }
+          li {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+          }
+          li strong {
+            color: #555;
+          }
+          .price {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #007b00;
+          }
+        </style>
+      </head>
+      <body>
+        <h3>Detalles de la compra:</h3>
+        <ul>
+          <li><strong>Nombre:</strong> ${nombre || "No especificado"}</li>
+          <li><strong>Método de entrega:</strong> ${metodoEntrega || "No especificado"}</li>
+          ${metodoEntrega === "envio" ? `
+            <li><strong>Localidad:</strong> ${localidad || "No especificado"}</li>
+            <li><strong>Calle:</strong> ${calle || "No especificado"}</li>
+            <li><strong>Número de teléfono:</strong> ${telefono || "No especificado"}</li>
+          ` : ""}
+          <li class="price"><strong>Precio:</strong> ${parseFloat(req.body.price).toFixed(2) || "No especificado"} $ ARS</li>
+        </ul>
+      </body>
+    </html>
+  `,
+};
   // Enviar el correo
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
