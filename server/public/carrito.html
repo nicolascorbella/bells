@@ -143,12 +143,15 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>document.getElementById("checkout-btn").addEventListener("click", function () {
   // Verificar si el formulario ya fue enviado en esta sesión
-  if (sessionStorage.getItem("formularioEnviado")) {
-    alert("Ya has completado el formulario en esta sesión.");
-    // Llamar a spanCerrar para cerrar el modal
-    spanCerrar.click(); // Cierra el modal
-    return;
-  }
+if (sessionStorage.getItem("formularioEnviado")) {
+  alert("Ya has completado el formulario en esta sesión.");
+  
+  // Cerrar el modal
+  const modal = document.getElementById("modal-formulario");
+  modal.style.display = "none"; // Cierra el modal directamente
+  
+  return; // Termina la ejecución
+}
 
   // Mostrar el modal del formulario
   const modal = document.getElementById("modal-formulario");
