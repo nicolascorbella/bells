@@ -144,7 +144,7 @@
     <script>document.getElementById("checkout-btn").addEventListener("click", function () {
   // Verificar si el formulario ya fue enviado en esta sesión
 if (sessionStorage.getItem("formularioEnviado")) {
-  alert("Ya has completado el formulario en esta sesión.");
+  alert(" ${nombre}, hemos guardado tus datos. Una vez hecha la compra recibirá un mensaje para que puedas ver el estado de envío.");
   
   // Cerrar el modal
   const modal = document.getElementById("modal-formulario");
