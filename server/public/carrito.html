@@ -140,8 +140,9 @@ checkoutBtn.addEventListener("click", function() {
   // Verificar si el formulario ya fue enviado en esta sesión
   if (sessionStorage.getItem("formularioEnviado")) {
     const nombre = sessionStorage.getItem("nombreUsuario");
+    const telefono = sessionStorage.getItem("telefonoUsuario"); // Recuperar el teléfono de sessionStorage
 
-    if (nombre) {
+    if (nombre && telefono) {
       alert(`${nombre}, hemos guardado tus datos. Una vez hecha la compra, recibirá un mensaje al ${telefono} para que pueda ver el estado de envío.`);
     } else {
       alert("Hemos guardado tus datos. Una vez hecha la compra, recibirá un mensaje para que pueda ver el estado de envío.");
@@ -175,28 +176,31 @@ document.getElementById("formulario-compra").addEventListener("submit", function
 
   // Verificar si los campos obligatorios están completos
   const nombre = document.getElementById("nombre").value;
+  const telefono = document.getElementById("telefono").value; // Obtener el valor del teléfono
   const metodoEntrega = document.getElementById("metodo-entrega").value;
   const totalPrice = document.getElementById("total").textContent.replace('$', '').trim(); // Obtener el precio del total
 
-  if (nombre && metodoEntrega) {
-    // Guardar el nombre del usuario en sessionStorage
+  if (nombre && telefono && metodoEntrega) {
+    // Guardar el nombre y el teléfono del usuario en sessionStorage
     sessionStorage.setItem("nombreUsuario", nombre);
+    sessionStorage.setItem("telefonoUsuario", telefono);
 
     // Obtener datos adicionales si el método de entrega es "envio"
     let localidad = "", calle = "", horario = "";
     if (metodoEntrega === "envio") {
       localidad = document.getElementById("localidad").value;
       calle = document.getElementById("calle").value;
-      telefono = document.getElementById("telefono").value;
+      horario = document.getElementById("horario").value;
     }
 
     // Enviar datos al servidor con fetch
     const data = {
       nombre: nombre,
+      telefono: telefono, // Incluir el teléfono en los datos enviados
       metodoEntrega: metodoEntrega,
       localidad: localidad,
       calle: calle,
-      telefono: telefono,
+      horario: horario,
       price: totalPrice // Incluir el precio total
     };
 
