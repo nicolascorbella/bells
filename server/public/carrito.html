@@ -141,80 +141,85 @@
     </div>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-  // Abrir el modal cuando se hace clic en "Comprar ahora"
-  document.getElementById("checkout-btn").addEventListener("click", function () {
-    const modal = document.getElementById("modal-formulario");
-    modal.style.display = "block";
-  });
+    <script>document.getElementById("checkout-btn").addEventListener("click", function () {
+  // Mostrar el modal del formulario
+  const modal = document.getElementById("modal-formulario");
+  modal.style.display = "block";
+});
 
-  // Cerrar el modal cuando se hace clic en el botón "x"
-  const spanCerrar = document.querySelector(".cerrar");
-  spanCerrar.addEventListener("click", function () {
-    const modal = document.getElementById("modal-formulario");
-    modal.style.display = "none";
-  });
+// Cerrar el modal cuando se hace clic en el botón "x"
+const spanCerrar = document.querySelector(".cerrar");
+spanCerrar.addEventListener("click", function () {
+  const modal = document.getElementById("modal-formulario");
+  modal.style.display = "none";
+});
 
-  // Mostrar/ocultar campos según el método de entrega
-  const metodoEntrega = document.getElementById("metodo-entrega");
-  const infoEnvio = document.getElementById("informacion-envio");
+// Cambiar los campos del formulario según el método de entrega
+const metodoEntrega = document.getElementById("metodo-entrega");
+const infoEnvio = document.getElementById("informacion-envio");
 
-  metodoEntrega.addEventListener("change", function () {
-    if (this.value === "envio") {
-      infoEnvio.style.display = "block";
-    } else {
-      infoEnvio.style.display = "none";
-    }
-  });
+metodoEntrega.addEventListener("change", function () {
+  if (this.value === "envio") {
+    infoEnvio.style.display = "block";
+  } else {
+    infoEnvio.style.display = "none";
+  }
+});
 
-  // Manejar el envío del formulario cuando se hace clic en "Continuar con el pago"
-  document.getElementById("formulario-compra").addEventListener("submit", function (e) {
-    e.preventDefault(); // Prevenir el comportamiento por defecto del formulario
+// Gestionar el envío del formulario
+document.getElementById("formulario-compra").addEventListener("submit", function (e) {
+  e.preventDefault(); // Prevenir el envío del formulario
 
-    const nombre = document.getElementById("nombre").value;
-    const metodoEntrega = document.getElementById("metodo-entrega").value;
+  // Verificar si los campos obligatorios están completos
+  const nombre = document.getElementById("nombre").value;
+  const metodoEntrega = document.getElementById("metodo-entrega").value;
+  const totalPrice = document.getElementById("total").textContent.replace('$', '').trim(); // Obtener el precio del total
+
+  if (nombre && metodoEntrega) {
+    // Obtener datos adicionales si el método de entrega es "envio"
     let localidad = "", calle = "", horario = "";
-
     if (metodoEntrega === "envio") {
       localidad = document.getElementById("localidad").value;
       calle = document.getElementById("calle").value;
       horario = document.getElementById("horario").value;
     }
 
-    if (nombre && metodoEntrega) {
-      // Enviar los datos al servidor (backend) para el envío del correo
-      fetch("/enviar_correo", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          nombre: nombre,
-          metodoEntrega: metodoEntrega,
-          localidad: localidad,
-          calle: calle,
-          horario: horario,
-        }),
-      })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          console.log("Correo enviado correctamente");
-        } else {
-          console.error("Error al enviar el correo");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    // Enviar datos al servidor con fetch
+    const data = {
+      nombre: nombre,
+      metodoEntrega: metodoEntrega,
+      localidad: localidad,
+      calle: calle,
+      horario: horario,
+      price: totalPrice // Incluir el precio total
+    };
 
-      // Cerrar el modal
-      const modal = document.getElementById("modal-formulario");
-      modal.style.display = "none";
-    } else {
-      console.error("Por favor, completa todos los campos obligatorios");
-    }
-  });
+    fetch("/enviar_correo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Correo enviado:", data);
+      // Aquí puedes realizar cualquier acción adicional si es necesario
+    })
+    .catch(error => {
+      console.error("Error al enviar el correo:", error);
+    });
+
+    // Ocultar el modal del formulario
+    const modal = document.getElementById("modal-formulario");
+    modal.style.display = "none";
+
+    console.log("Formulario enviado correctamente");
+  } else {
+    console.error("Por favor, completa todos los campos obligatorios");
+  }
+});
+
 </script>
     <script>const mp = new MercadoPago("APP_USR-7edc8b84-c5af-4c5b-8914-db56155a5f52", {
   locale: "es-AR",
