@@ -132,24 +132,25 @@
         </main>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>// Verificar si el formulario ya fue enviado en esta sesión
-// Verificar si el formulario ya fue enviado en esta sesión
-if (sessionStorage.getItem("formularioEnviado")) {
-  const nombre = sessionStorage.getItem("nombreUsuario"); // Recuperar el nombre guardado en sessionStorage
-  
-  if (nombre) {
-    // Mostrar el mensaje con el nombre recuperado
-    alert(`${nombre}, hemos guardado tus datos. Una vez hecha la compra, recibirá un mensaje para que pueda ver el estado de envío.`);
-  } else {
-    // Si no hay nombre guardado, muestra un mensaje genérico
-    alert("Hemos guardado tus datos. Una vez hecha la compra, recibirá un mensaje para que pueda ver el estado de envío.");
-  }
-
-}
-
-// Mostrar el modal del formulario
+    <script>
+// Escuchar al botón de checkout para mostrar el modal
+const checkoutBtn = document.getElementById("checkout-btn");
 const modal = document.getElementById("modal-formulario");
-modal.style.display = "flex";
+
+checkoutBtn.addEventListener("click", function() {
+  // Verificar si el formulario ya fue enviado en esta sesión
+  if (sessionStorage.getItem("formularioEnviado")) {
+    const nombre = sessionStorage.getItem("nombreUsuario");
+
+    if (nombre) {
+      alert(`${nombre}, hemos guardado tus datos. Una vez hecha la compra, recibirá un mensaje para que pueda ver el estado de envío.`);
+    } else {
+      alert("Hemos guardado tus datos. Una vez hecha la compra, recibirá un mensaje para que pueda ver el estado de envío.");
+    }
+  } else {
+    modal.style.display = "flex";
+  }
+});
 
 // Cerrar el modal cuando se hace clic en el botón "x"
 const spanCerrar = document.querySelector(".cerrar");
