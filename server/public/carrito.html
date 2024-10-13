@@ -179,6 +179,7 @@ document.getElementById("formulario-compra").addEventListener("submit", function
   // Verificar si los campos obligatorios están completos
   const nombre = document.getElementById("nombre").value;
   const metodoEntrega = document.getElementById("metodo-entrega").value;
+  const totalPrice = document.getElementById("total").textContent.replace('$', '').trim(); // Obtener el precio del total
 
   if (nombre && metodoEntrega) {
     // Obtener datos adicionales si el método de entrega es "envio"
@@ -225,9 +226,6 @@ document.getElementById("formulario-compra").addEventListener("submit", function
     console.log("Formulario enviado correctamente");
   } else {
     console.error("Por favor, completa todos los campos obligatorios");
-
-    // Llamar a spanCerrar para cerrar el modal
-    spanCerrar.click(); // Cierra el modal
   }
 });
 
