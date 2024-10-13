@@ -137,10 +137,9 @@ const checkoutBtn = document.getElementById("checkout-btn");
 const modal = document.getElementById("modal-formulario");
 
 checkoutBtn.addEventListener("click", function() {
-  // Verificar si el formulario ya fue enviado en esta sesión
   if (sessionStorage.getItem("formularioEnviado")) {
     const nombre = sessionStorage.getItem("nombreUsuario");
-    const telefono = sessionStorage.getItem("telefonoUsuario"); // Recuperar el teléfono de sessionStorage
+    const telefono = sessionStorage.getItem("telefonoUsuario");
 
     if (nombre && telefono) {
       alert(`${nombre}, hemos guardado tus datos. Una vez hecha la compra, recibirá un mensaje al ${telefono} para que pueda ver el estado de envío.`);
@@ -152,13 +151,11 @@ checkoutBtn.addEventListener("click", function() {
   }
 });
 
-// Cerrar el modal cuando se hace clic en el botón "x"
 const spanCerrar = document.querySelector(".cerrar");
 spanCerrar.addEventListener("click", function () {
   modal.style.display = "none";
 });
 
-// Cambiar los campos del formulario según el método de entrega
 const metodoEntrega = document.getElementById("metodo-entrega");
 const infoEnvio = document.getElementById("informacion-envio");
 
@@ -170,36 +167,35 @@ metodoEntrega.addEventListener("change", function () {
   }
 });
 
-// Gestionar el envío del formulario
 document.getElementById("formulario-compra").addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevenir el envío del formulario
+  e.preventDefault();
 
-  // Verificar si los campos obligatorios están completos
   const nombre = document.getElementById("nombre").value;
-  const telefono = document.getElementById("telefono").value; // Obtener el valor del teléfono
+  const telefono = document.getElementById("telefono").value;
   const metodoEntrega = document.getElementById("metodo-entrega").value;
-  const totalPrice = document.getElementById("total").textContent.replace('$', '').trim(); // Obtener el precio del total
+  const totalPrice = document.getElementById("total").textContent.replace('$', '').trim();
 
   if (nombre && telefono && metodoEntrega) {
-    // Guardar el nombre y el teléfono del usuario en sessionStorage
     sessionStorage.setItem("nombreUsuario", nombre);
     sessionStorage.setItem("telefonoUsuario", telefono);
 
-    // Obtener datos adicionales si el método de entrega es "envio"
-    let localidad = "", calle = "", telefono = "";
+    let localidad = "", calle = "";
     if (metodoEntrega === "envio") {
       localidad = document.getElementById("localidad").value;
       calle = document.getElementById("calle").value;
+      if (!localidad || !calle) {
+        console.error("Por favor, completa los campos de envío.");
+        return;
+      }
     }
 
-    // Enviar datos al servidor con fetch
     const data = {
       nombre: nombre,
-      telefono: telefono, // Incluir el teléfono en los datos enviados
+      telefono: telefono,
       metodoEntrega: metodoEntrega,
       localidad: localidad,
       calle: calle,
-      price: totalPrice // Incluir el precio total
+      price: totalPrice
     };
 
     fetch("/enviar_correo", {
@@ -212,24 +208,17 @@ document.getElementById("formulario-compra").addEventListener("submit", function
     .then(response => response.json())
     .then(data => {
       console.log("Correo enviado:", data);
-      // Guardar en sessionStorage que el formulario ya ha sido enviado
       sessionStorage.setItem("formularioEnviado", "true");
-
-      // Aquí puedes realizar cualquier acción adicional si es necesario
     })
     .catch(error => {
       console.error("Error al enviar el correo:", error);
     });
 
-    // Ocultar el modal del formulario
     modal.style.display = "none";
-
-    console.log("Formulario enviado correctamente");
   } else {
-    console.error("Por favor, completa todos los campos obligatorios");
+    console.error("Por favor, completa todos los campos obligatorios.");
   }
 });
-
     </script>
     <script>const mp = new MercadoPago("APP_USR-7edc8b84-c5af-4c5b-8914-db56155a5f52", {
   locale: "es-AR",
