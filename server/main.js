@@ -112,6 +112,7 @@ app.post("/enviar_correo", (req, res) => {
       - Localidad: ${localidad}
       - Calle: ${calle}
       - Horario: ${horario}` : ""}
+    -Precio: ${req.body.price}.
     `,
   };
 
