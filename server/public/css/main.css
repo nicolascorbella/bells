@@ -580,6 +580,41 @@ td {
   transform: rotate(15deg); /* Rotación de 15 grados */
 }
 
+/* Estilos para el modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-contenido {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.cerrar {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.cerrar:hover, .cerrar:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 /* Animación para el movimiento del carrusel */
 @keyframes scroll-left {
   0% {
@@ -709,7 +744,7 @@ td {
   height: 48px;
   z-index: 2;
   margin: 50%;
-  margin-top: 44%;
+  margin-top: 60%;
   transform: translateX(-50%);
   align-self: center;
   text-align: center;
