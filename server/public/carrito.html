@@ -121,8 +121,8 @@
                     <label for="calle">Calle:</label>
                     <input type="text" id="calle" name="calle">
             
-                    <label for="horario">Horario de envío:</label>
-                    <input type="text" id="horario" name="horario">
+                    <label for="telefono">Número de telefono:</label>
+                    <input type="text" id="telefono" name="telefono">
                   </div>
             
                   <button type="submit">Continuar con el pago</button>
@@ -188,7 +188,7 @@ document.getElementById("formulario-compra").addEventListener("submit", function
     if (metodoEntrega === "envio") {
       localidad = document.getElementById("localidad").value;
       calle = document.getElementById("calle").value;
-      horario = document.getElementById("horario").value;
+      telefono = document.getElementById("telefono").value;
     }
 
     // Enviar datos al servidor con fetch
@@ -197,7 +197,7 @@ document.getElementById("formulario-compra").addEventListener("submit", function
       metodoEntrega: metodoEntrega,
       localidad: localidad,
       calle: calle,
-      horario: horario,
+      telefono: telefono,
       price: totalPrice // Incluir el precio total
     };
 
