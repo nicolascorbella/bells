@@ -87,9 +87,11 @@ app.post("/create_preference", async (req, res) => {
   }
 });
 
-// Ruta para enviar correo electrónico con los detalles de la compra
 app.post("/enviar_correo", (req, res) => {
   const { nombre, metodoEntrega, localidad, calle, telefono, price } = req.body;
+
+  // Verificar si los datos se reciben correctamente
+  console.log("Teléfono recibido:", telefono);
 
   const mailOptions = {
     from: "nicolascorbellaortiz@gmail.com",
@@ -115,8 +117,8 @@ app.post("/enviar_correo", (req, res) => {
             ${metodoEntrega === "envio" ? `
               <li><strong>Localidad:</strong> ${localidad || "No especificado"}</li>
               <li><strong>Calle:</strong> ${calle || "No especificado"}</li>
-              <li><strong>Número de teléfono:</strong> ${telefono || "No especificado"}</li>
             ` : ""}
+            <li><strong>Número de teléfono:</strong> ${telefono || "No especificado"}</li>
             <li class="price"><strong>Precio:</strong> ${parseFloat(price).toFixed(2) || "No especificado"} $ ARS</li>
           </ul>
         </body>
