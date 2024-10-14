@@ -556,9 +556,8 @@ td {
 }
 
 .galeria:hover {
-  transform: scale(1.1);
-  opacity: 90%;
-  transition: 1s;
+  transform: scale(0.9);
+  transition: 500ms;
 }
 
 .galeria-carrusel {
@@ -579,7 +578,7 @@ td {
   height: auto;
   margin: 0 10px;
   border-radius: 8px; /* Opcional: si deseas bordes redondeados */
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.733)); /* Sombra blanca que sigue el contorno */
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.37)); /* Sombra blanca que sigue el contorno */
   transform: rotate(15deg); /* Rotación de 15 grados */
 }
 
@@ -685,6 +684,10 @@ td {
   margin-left: 5vw;
   margin-top: 5%;
   margin-bottom: 1vw;
+}
+
+.menu {
+  width: 100%;
 }
 
 .dropdown {
@@ -1294,20 +1297,21 @@ footer p {
 .menu {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .boton-menu {
-  background-color: transparent;
   border: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 1rem;
-  font-weight: 600;
+  font-weight: 900;
   padding: 1rem;
   font-size: 0.85rem;
   width: 100%;
-  margin-left: -15%;
+  font-size: 32px;
+  background-color: whitesmoke;
 }
 
 .boton-menu.active {
@@ -1316,14 +1320,19 @@ footer p {
   position: relative;
 }
 
+.boton-volver {
+  background-color: whitesmoke;
+  padding: 1em;
+  font-size: 2em;
+  margin-top: 1em;
+  text-align: center;
+  font-family: Roboto;
+  font-weight: 800;
+}
+
 .boton-menu > i.bi-hand-index-thumb-fill,
 .boton-menu > i.bi-hand-index-thumb {
   transform: rotateZ(90deg);
-}
-
-.boton-carrito {
-  margin-top: 2rem;
-  font-size: 32px;
 }
 
 .numerito {
@@ -1332,7 +1341,7 @@ footer p {
   font-size: 40px;
 }
 
-.boton-carrito.active .numerito {
+.boton-menu.active .numerito {
   background-color: var(--clr-main);
   color: var(--clr-white);
 }
@@ -1447,12 +1456,12 @@ footer p {
 }
 
 .carrito-producto-imagen {
-  width: 4rem;
+  width: 9rem;
   border-radius: 1rem;
 }
 
 .carrito-producto small {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
 }
 
 .carrito-producto-eliminar {
@@ -1460,6 +1469,7 @@ footer p {
   background-color: transparent;
   color: black;
   cursor: pointer;
+  font-size: 40px;
 }
 
 .carrito-acciones {
@@ -1488,6 +1498,7 @@ footer p {
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
   gap: 1rem;
+  width: 100%;
 }
 
 .carrito-acciones-izquierda {
