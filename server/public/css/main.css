@@ -275,15 +275,15 @@ article {
 }
 
 .destacados-h2 {
-  font-size: 44px;
+  font-size: 40px;
   position: absolute;
   z-index: 2;
   color: white;
-  width: 99vw;
+  width: 100%;
   text-align: center;
   text-shadow: -1px -1px 0 rgba(199, 151, 89, 0.2823529412), 1px -1px 0 #C79759, -1px 1px 0 #C79759, 1px 1px 0 rgba(199, 151, 89, 0.7882352941);
   transition: ease-in-out 1s;
-  margin-top: -120%;
+  margin-top: -140%;
   text-align: center;
 }
 
