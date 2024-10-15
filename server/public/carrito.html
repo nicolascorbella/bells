@@ -58,16 +58,16 @@
             <button class="close-menu" id="close-menu">
                 <i class="bi bi-x"></i>
             </button>
-            <nav>
-                <ul>
-                    <li>
-                        <a class="boton-menu boton-volver" href="./index.html">
+            <div>
+                <div>
+                    <div>
+                        <a class="boton-menu boton-volver" href="./tienda">
                             <i class="bi bi-arrow-return-left"></i> Seguir comprando
                         </a>
-                    </li>
+                    </div>
                     
-                </ul>
-            </nav>
+                </div>
+            </div>
         </aside>
         <main class="contenedor-carrito">
             <h2 class="titulo-carrito">Carrito</h2>
@@ -99,7 +99,7 @@
             <div id="modal-formulario" class="modal">
               <div class="modal-contenido">
                 <span class="cerrar">&times;</span>
-                <h3>Detalles de la compra</h3>
+                <h3>Ingrese sus datos</h3>
                 <form id="formulario-compra">
                   <label for="nombre">Nombre y apellido:</label>
                   <input type="text" id="nombre" name="nombre" required>
@@ -107,7 +107,7 @@
                   <input type="text" id="telefono" name="telefono" required>
                   <label for="metodo-entrega">Método de entrega:</label>
                   <select id="metodo-entrega" name="metodo-entrega" required>
-                    <option value="retiro">Retiro en local</option>
+                    <option value="retiro">Retiro en local (San Martín)</option>
                     <option value="envio">Envío a domicilio</option>
                   </select>
             
@@ -330,7 +330,6 @@ function cargarProductosCarrito() {
       div.innerHTML = `
         <img class="carrito-producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
         <div class="carrito-producto-titulo">
-          <small>Título</small>
           <h3>${producto.titulo}</h3>
         </div>
         <div class="carrito-producto-cantidad">
@@ -427,7 +426,16 @@ function actualizarTotal() {
   );
   contenedorTotal.innerText = `$${totalCalculado}`;
 }
-
+const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('no-scroll');
+            } else {
+                document.body.classList.remove('no-scroll');
+            }
+        });
+    }
 </script>
 
     <footer>
