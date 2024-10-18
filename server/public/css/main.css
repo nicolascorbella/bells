@@ -1656,6 +1656,7 @@ footer p {
   border-color: #999; /* Cambiar el color del borde en hover */
   color: white;
   font-weight: 400;
+  border: none;
 }
 
 /* Ajuste del contenedor de botones */
