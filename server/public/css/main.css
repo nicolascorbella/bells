@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswlad:wght@400;500;700&display=swap");
 *,
 *::after,
 *::before {
@@ -13,7 +13,7 @@ a {
 
 body {
   margin: 0;
-  font-family: "Oswald", sans-serif;
+  font-family: "Oswald";
   overflow-x: hidden;
   box-sizing: border-box;
   background-color: #E2E2E2;
@@ -408,7 +408,7 @@ form {
 }
 
 .tienda-producto {
-  max-width: 500px;
+  max-width: 300px;
   text-align: center;
 }
 
@@ -427,15 +427,6 @@ form {
   left: 0;
   width: 100%;
   transition: 1s;
-}
-
-.carousel-item img {
-  transition: 1s;
-}
-
-.carousel-item img:hover {
-  transform: scale(1.04);
-  transition: 500ms ease;
 }
 
 .carousel-item.active {
@@ -543,25 +534,20 @@ td {
   font-size: 40px;
 }
 
+/* Galería */
 .galeria {
   width: 95%;
   overflow: hidden;
-  background-color: rgba(0, 0, 0, 0);
   padding: 20px 0;
-  position: absolute;
-  top: 0%;
+  position: relative;
   margin-top: 25em;
-  transition: 1s;
   display: flex;
+  justify-content: center;
 }
 
-.galeria:hover {
-  transform: scale(0.9);
-  transition: 500ms;
-}
-
+/* Carrusel */
 .galeria-carrusel {
-  width: 95%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -569,19 +555,39 @@ td {
 
 .carrusel-items {
   display: flex;
-  animation: scroll-left 35s linear infinite; /* Movimiento del carrusel */
   gap: 1%;
+  --scroll-speed: 35s; /* Velocidad inicial */
+  --scroll-direction: normal; /* Dirección inicial */
+  animation: scroll-left var(--scroll-speed) linear infinite;
+  animation-play-state: running; /* Asegura que la animación esté corriendo */
 }
 
 .carrusel-items img {
   width: 200px;
   height: auto;
   margin: 0 10px;
-  border-radius: 8px; /* Opcional: si deseas bordes redondeados */
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.37)); /* Sombra blanca que sigue el contorno */
-  transform: rotate(15deg); /* Rotación de 15 grados */
+  border-radius: 8px;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.37));
+  transform: rotate(15deg);
 }
 
+/* Animaciones */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 /* Estilos para el modal */
 .modal {
   display: none;
@@ -671,15 +677,6 @@ td {
   margin-top: 20px;
 }
 
-/* Animación para el movimiento del carrusel */
-@keyframes scroll-left {
-  0% {
-    transform: translateX(9%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
 .menu-wrapper {
   position: absolute;
   z-index: 2;
@@ -1190,19 +1187,19 @@ footer p {
   }
   .container-producto {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%; /* Asegura que ocupe todo el ancho disponible */
     padding: 0;
     padding: 2%;
   }
   .container-producto img {
-    max-width: 500px;
+    max-width: 300px;
     text-align: start;
-    max-height: 500px;
+    max-height: 300px;
   }
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    grid-template-columns: repeat(6fr, 1fr); /* 4 columnas */
     gap: 25px;
     justify-content: center;
   }
@@ -1232,7 +1229,7 @@ footer p {
   .calltoaction {
     margin-top: 14%;
     margin-left: 4vw;
-    transform: scale(1.1);
+    transform: scale(1.4);
     min-width: 160;
   }
   .historia {
@@ -1305,8 +1302,8 @@ footer p {
 .boton-menu {
   background-color: rgb(199, 151, 89);
   padding: 1em;
-  font-size: 2.4em;
-  margin-top: 1em;
+  font-size: 2em;
+  margin-top: 5%;
   text-align: center;
   font-family: Oswald;
   font-weight: 400;
@@ -1389,14 +1386,16 @@ footer p {
 
 .contenedor-productos {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
 .producto-imagen {
-  max-width: 100%;
+  max-width: 300px;
   border-radius: 1rem;
   background-color: white;
+  display: flex;
+  min-width: 100px;
 }
 
 .producto-detalles {
@@ -1443,6 +1442,48 @@ footer p {
 .producto-agregar:hover {
   background-color: var(--clr-main);
   color: var(--clr-white);
+}
+
+.contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.producto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.producto-imagen {
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  background-color: white;
+  object-fit: cover; /* Asegura que la imagen no se distorsione */
+  display: block;
+  max-width: 100%;
+  flex-grow: 1; /* Permite que la imagen crezca si es necesario */
+}
+
+.producto-detalles {
+  color: grey;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  margin-top: -1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  font-size: 1.8rem;
+  text-align: center;
+  transition: 1s;
+  width: 100%;
+}
+
+.producto-detalles:hover {
+  scale: 1.05;
+  transition: 1s;
 }
 
 /** CARRITO **/
@@ -1595,13 +1636,59 @@ footer p {
   display: none;
 }
 
+/* Estilos generales de los botones */
+.ordenar-boton {
+  padding: 10px 16px;
+  background-color: #ffffff; /* Fondo blanco para imitar un select */
+  border: 1px solid #ccc; /* Borde similar al select */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer;
+  display: inline-block;
+  min-width: 150px; /* Ancho mínimo para parecerse más a un select */
+  text-align: left; /* Texto alineado a la izquierda */
+  font-size: 16px;
+  color: #333; /* Color de texto */
+  transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+/* Hover para imitar el efecto de hover de un select */
+.ordenar-boton:hover {
+  background-color: #f0f0f0; /* Color de fondo al hacer hover */
+  border-color: #999; /* Cambiar el color del borde en hover */
+}
+
+/* Estado activo para imitar la opción seleccionada */
+.ordenar-active {
+  background-color: #e0e0e0; /* Fondo para la opción seleccionada */
+  border-color: #777; /* Borde de la opción seleccionada */
+  color: #000; /* Color de texto de la opción activa */
+}
+
+/* Ajuste del contenedor de botones */
+.ordenar-opciones {
+  display: inline-block; /* Mostrar botones en fila */
+  border-radius: 4px;
+  overflow: hidden; /* Esconder bordes internos */
+  background-color: rgba(255, 255, 255, 0); /* Fondo blanco */
+  font-size: 22px;
+  font-family: Oswald;
+  font-weight: 800;
+}
+
+.ordenar-boton:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.ordenar-boton:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
 /*** MEDIA QUERIES ***/
 @media screen and (max-width: 900px) {
   .contenedor-productos {
     grid-template-columns: 1fr 1fr 1fr;
-  }
-  .contenedor-productos {
-    grid-template-columns: 1fr 1fr;
   }
   .wrapper {
     min-height: 100vh;
@@ -1624,6 +1711,7 @@ footer p {
     margin: 1rem;
     margin-top: 0;
     padding: 2rem;
+    font-family: Oswald;
   }
   .contenedor-productos {
     grid-template-columns: 1fr 1fr;
