@@ -7,7 +7,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 2000
+        "precio": 29999
     },
     {
         "id": "campana01",
@@ -17,7 +17,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 1000
+        "precio": 21999
     },
     {
         "id": "campana02",
@@ -27,7 +27,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 1100
+        "precio": 21999
     },
     {
         "id": "campana03",
@@ -37,7 +37,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 1200
+        "precio": 21999
     },
     {
         "id": "campana04",
@@ -47,7 +47,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 1300
+        "precio": 21999
     },
     {
         "id": "campana05",
@@ -57,7 +57,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 1400
+        "precio": 21999
     },
     {
         "id": "campana06",
@@ -67,7 +67,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 1500
+        "precio": 21999
     },
     {
         "id": "campana07",
@@ -77,7 +77,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 1600
+        "precio": 21999
     },
     {
         "id": "campana08",
@@ -87,7 +87,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 1700
+        "precio": 21999
     },
     {
         "id": "campana09",
@@ -97,7 +97,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 1800
+        "precio": 21999
     },
     {
         "id": "campana10",
@@ -107,7 +107,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 1900
+        "precio": 21999
     },
     {
         "id": "campana11",
@@ -117,7 +117,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 2000
+        "precio": 21999
     },
     {
         "id": "campana12",
@@ -127,7 +127,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 2000
+        "precio": 29999
     },{
         "id": "campana13",
         "titulo": "León",
@@ -136,7 +136,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 2000
+        "precio": 29999
     },{
         "id": "campana14",
         "titulo": "twopistols",
@@ -145,7 +145,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 2000
+        "precio": 21999
     },{
         "id": "campana15",
         "titulo": "Horned Skull",
@@ -154,7 +154,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 2000
+        "precio": 29999
     },{
         "id": "campana16",
         "titulo": "Bearded Skull",
@@ -163,7 +163,7 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 2000
+        "precio": 29999
     },{
         "id": "campana17",
         "titulo": "Aguila Live to Ride",
@@ -172,7 +172,16 @@
             "nombre": "campanas",
             "id": "campanas"
         },
-        "precio": 2000
+        "precio": 29999
+    },{
+        "id": "campana18",
+        "titulo": "Virgendeguadalupe",
+        "imagen": "../campanas/virgendeguadalupe/img1.webp",
+        "categoria": {
+            "nombre": "campanas",
+            "id": "campanas"
+        },
+        "precio": 21999
     }
 
 ]

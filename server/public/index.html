@@ -150,18 +150,45 @@
 
   <p>TheGuardianBell</p>
 </footer>
-<script>document.addEventListener('DOMContentLoaded', function () {
-    // ------------------ Carrusel Infinito ------------------
+<script>
+document.addEventListener('DOMContentLoaded', function () {
     const carrusel = document.querySelector('.carrusel-items');
+    let isAnimating = false; // Variable para controlar la animación
     if (carrusel) {
-        const items = Array.from(carrusel.children); // Hacemos una copia estática de los elementos
+        const items = Array.from(carrusel.children);
         const totalItems = items.length;
 
-        // Duplicamos los elementos una sola vez
+        // Duplicar los elementos para que el carrusel sea infinito
         for (let i = 0; i < totalItems; i++) {
             let clone = items[i].cloneNode(true);
             carrusel.appendChild(clone);
         }
+
+        // Inicialmente establecemos la velocidad normal
+        carrusel.style.animationDuration = '35s';
+
+        // Evento para aumentar la velocidad al hacer hover sin reiniciar la animación
+        carrusel.addEventListener('mouseover', () => {
+            if (!isAnimating) {
+                isAnimating = true;  // Bloqueamos el evento mientras la animación esté activa
+
+                // Cambiamos solo la duración de la animación sin reiniciarla
+                carrusel.style.animationDuration = '35s';
+
+                // Reseteamos la velocidad original después de 2 segundos
+                setTimeout(() => {
+                    carrusel.style.animationDuration = '35s'; // Restablece la velocidad a 35s
+                    isAnimating = false; // Permitimos volver a activar el evento después de los 2s
+                }, 2000); // Duración del efecto: 2 segundos
+            }
+        });
+
+        // Evento para reseteo cuando se quita el hover (reseteo en 1 segundo)
+        carrusel.addEventListener('mouseout', () => {
+            setTimeout(() => {
+                carrusel.style.animationDuration = '35s'; // Reseteamos la duración a 35s si es necesario
+            }, 1000); // Reseteo después de 1 segundo
+        });
     }
 
     // ------------------ Diapositiva Móvil ------------------
