@@ -521,13 +521,6 @@ td {
   text-align: right;
 }
 
-.container-producto {
-  padding: 1em 1em 2em;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
 .producto-nombre {
   z-index: 2;
   color: #000000;
@@ -1019,6 +1012,31 @@ footer p {
   margin-top: 25%;
 }
 
+/* Estilo general para la disposición en grid */
+.contenedor-productos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
+  gap: 1rem;
+}
+
+.producto-imagen {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Mantener proporciones */
+  border-radius: 1rem;
+  background-color: white;
+}
+
+.producto-detalles {
+  color: grey;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
 @media (min-width: 900px) {
   .hamburger-menu, .sidebar {
     display: none;
@@ -1442,48 +1460,6 @@ footer p {
 .producto-agregar:hover {
   background-color: var(--clr-main);
   color: var(--clr-white);
-}
-
-.contenedor-productos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.producto {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.producto-imagen {
-  width: 100%;
-  height: auto;
-  border-radius: 1rem;
-  background-color: white;
-  object-fit: cover; /* Asegura que la imagen no se distorsione */
-  display: block;
-  max-width: 100%;
-  flex-grow: 1; /* Permite que la imagen crezca si es necesario */
-}
-
-.producto-detalles {
-  color: grey;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  margin-top: -1.3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  font-size: 1.8rem;
-  text-align: center;
-  transition: 1s;
-  width: 100%;
-}
-
-.producto-detalles:hover {
-  scale: 1.05;
-  transition: 1s;
 }
 
 /** CARRITO **/
