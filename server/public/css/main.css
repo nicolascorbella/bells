@@ -142,7 +142,7 @@ header a {
 
 .headerline {
   height: 1px;
-  width: 12em;
+  width: 8em;
   background-color: rgb(255, 255, 255);
   text-align: center;
   justify-content: center;
@@ -407,36 +407,50 @@ form {
   margin-top: 1em;
 }
 
-.tienda-producto {
-  max-width: 300px;
-  text-align: center;
+.container-producto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px;
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 10px;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .carousel {
   position: relative;
-  overflow: hidden;
-  width: 100%;
-  perspective: 1200px; /* Controla la profundidad 3D */
-  transition: 1s;
+  overflow: hidden; /* Asegura que solo una imagen esté visible */
+  width: 100%; /* Puedes ajustar esto según el tamaño que desees */
+  max-width: 500px; /* Ajusta el tamaño máximo */
+  margin: auto; /* Centra el carrusel */
 }
 
 .carousel-item {
-  display: none;
+  display: none; /* Oculta todas las imágenes por defecto */
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  transition: 1s;
+  transition: opacity 1s ease-in-out; /* Transición suave */
 }
 
 .carousel-item.active {
-  display: block;
+  display: block; /* Solo la imagen activa debe ser visible */
   position: relative;
 }
 
 .carousel-item img {
-  width: 100%;
-  height: 500px; /* Puedes ajustar esta altura según necesites */
+  width: 100%; /* Asegúrate de que la imagen ocupe todo el contenedor */
   object-fit: cover;
   border-radius: 8px;
 }
@@ -444,57 +458,58 @@ form {
 .carousel-control {
   position: absolute;
   top: 50%;
-  margin: -2%;
-  transform: translateY(0%);
-  background-color: rgba(0, 0, 0, 0.288);
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  padding: 15px;
+  padding: 10px;
   cursor: pointer;
   font-size: 24px;
-  user-select: none;
   border: none;
 }
 
 .carousel-control.prev {
   left: 10px;
-  z-index: 1;
 }
 
 .carousel-control.next {
   right: 10px;
 }
 
-.caracteristicas-producto {
-  margin: 20px;
-}
-
-.caracteristicas-producto h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
-  margin-top: 60%;
-}
-
-.contenedor-caracteristicas {
+.cards {
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex-direction: column;
-  padding: 3em;
-  text-align: center;
+  justify-content: center;
+  gap: 1.5em;
+  margin-top: 2em;
 }
 
-.caracteristicas-principales, .otros {
-  width: 90%;
+.card {
+  width: 250px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 1em;
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card__img {
+  height: 150px;
+  background-color: #ddd;
+  border-radius: 8px;
+}
+
+.caracteristicas-producto {
   padding: 2em;
-  align-self: center;
+  text-align: center;
 }
 
-.caracteristicas-principales h3, .otros h3 {
-  font-size: 18px;
-  text-align: center;
-  display: block;
-  color: #313336;
+.caracteristicas-principales table, .otros table {
+  width: 100%;
+  margin: 1em 0;
 }
 
 table {
@@ -963,11 +978,6 @@ td {
   transition: 500ms;
 }
 
-ul:hover {
-  transition: 700ms;
-  transform: scale(1.01);
-}
-
 footer {
   background-color: rgb(199, 151, 89); /* Ajustado para mayor legibilidad */
   color: rgb(0, 0, 0);
@@ -1239,13 +1249,14 @@ footer p {
 
 .carrito-producto {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   background-color: whitesmoke;
   color: rgb(0, 0, 0);
   padding: 0.5rem;
   padding-right: 1.5rem;
   border-radius: 1rem;
+  text-align: center;
 }
 
 .carrito-producto-imagen {
@@ -1314,7 +1325,6 @@ footer p {
   font-weight: 600;
   text-align: center;
   font-family: Oswald;
-  margin: 1em;
 }
 
 .carrito-producto h3 {
@@ -1457,10 +1467,10 @@ footer p {
     justify-content: center; /* Centra los elementos li en el medio */
     margin: 0;
     width: 100%;
-    background-color: #000000;
-    margin-top: 7.5em;
+    background-color: #C7C7C7;
+    margin-top: 6em;
     position: absolute;
-    font-size: 20px;
+    font-size: 26px;
     padding: 0 0.5em;
     transition: 1s;
   }
@@ -1477,36 +1487,42 @@ footer p {
   .desk-ul ul li {
     position: relative;
     padding: 10px 15px; /* Añade un poco de padding */
-    color: white;
   }
   .desk-ul ul li::before {
     content: "";
     position: absolute;
-    top: 40;
+    top: 20;
     left: 0;
     width: 100%;
-    height: 4px; /* El grosor de la línea */
-    background-color: #C79759;
-    color: #C79759;
+    height: 32px; /* El grosor de la línea */
+    background-color: rgb(199, 151, 89);
+    color: white;
     transform: scaleX(0); /* Inicialmente la línea está oculta */
     transform-origin: left;
-    transition: transform 0.3s ease; /* Transición suave */
+    transition: transform 0.5s ease; /* Transición suave */
+    border-radius: 9px;
+    opacity: 50%;
   }
   .desk-ul ul li:hover::before {
     transform: scaleX(1); /* La línea se expande al hacer hover */
   }
   .desk-ul ul li a {
     text-decoration: none;
-    color: white;
+    color: rgb(0, 0, 0);
+  }
+  ul:hover {
+    transition: 900ms;
+    transform: scale(1.01);
   }
   .productos {
     display: none; /* Oculta el submenú inicialmente */
     position: absolute;
     top: 100%; /* Coloca el submenú justo debajo del li */
     left: 0;
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.0901960784);
     padding: 10px;
-    border: 1px solid rgb(0, 0, 0);
+    border-radius: 7px;
+    color: black;
   }
   .aside {
     padding: 9rem 2rem;
@@ -1598,9 +1614,9 @@ footer p {
     padding: 2%;
   }
   .container-producto img {
-    max-width: 300px;
+    max-width: 500px;
     text-align: start;
-    max-height: 300px;
+    max-height: 500px;
   }
   .product-grid {
     display: grid;

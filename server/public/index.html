@@ -233,43 +233,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ------------------ Carrusel Manual ------------------
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.carousel-item');
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            if (i === index) {
-                slide.classList.add('active');
-            }
-        });
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    // Inicia el carrusel con la primera imagen
-    if (slides.length > 0) {
-        showSlide(currentSlide);
-    }
-
-    // Asignar eventos a los botones del carrusel
-    const nextButton = document.querySelector('.carousel-control.next');
-    const prevButton = document.querySelector('.carousel-control.prev');
-
-    if (nextButton && prevButton) {
-        nextButton.addEventListener('click', nextSlide);
-        prevButton.addEventListener('click', prevSlide);
-    }
-
+    
     // ------------------ Animación de desaparición de div ------------------
     const cta = document.getElementById('cta');
     const ctaLink = document.getElementById('cta-link');
