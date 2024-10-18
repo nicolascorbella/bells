@@ -1016,15 +1016,16 @@ footer p {
 .contenedor-productos {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
-  gap: 1rem;
 }
 
 .producto-imagen {
-  width: 100%;
+  max-width: 200px;
   height: auto;
   object-fit: cover; /* Mantener proporciones */
   border-radius: 1rem;
   background-color: white;
+  min-width: 200px;
+  width: 180px;
 }
 
 .producto-detalles {
@@ -1035,6 +1036,7 @@ footer p {
   flex-direction: column;
   gap: 0.5rem;
   text-align: center;
+  width: 180px;
 }
 
 @media (min-width: 900px) {
@@ -1685,9 +1687,6 @@ footer p {
     margin-top: 0;
     padding: 2rem;
     font-family: Oswald;
-  }
-  .contenedor-productos {
-    grid-template-columns: 1fr 1fr;
   }
   .header-mobile {
     padding: 1rem;
