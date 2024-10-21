@@ -156,10 +156,22 @@ header a {
   position: absolute; /* Permite usar left y transform */
   left: 50%; /* Posiciona el logo en el centro horizontal */
   transform: translateX(-50%); /* Centra el logo correctamente */
-  border-radius: 46%; /* Hace que el elemento sea un círculo */
+  border-radius: 1%; /* Hace que el elemento sea un círculo */
   top: 0.5em;
   margin-top: -0.5%;
   overflow: hidden; /* Asegura que si hay contenido dentro, se recorte en la forma circular */
+}
+
+.producto-informacion {
+  position: relative;
+  font-size: 16px;
+  display: inline;
+  height: 1em;
+  margin-top: 6%;
+  font-weight: 500;
+  margin-bottom: 15%;
+  padding-inline: 3%;
+  color: rgba(0, 0, 0, 0.418);
 }
 
 .shopping_bag {
@@ -281,7 +293,7 @@ article {
   color: white;
   width: 100%;
   text-align: center;
-  text-shadow: -1px -1px 0 rgba(199, 151, 89, 0.2823529412), 1px -1px 0 #C79759, -1px 1px 0 #C79759, 1px 1px 0 rgba(199, 151, 89, 0.7882352941);
+  text-shadow: -1px -1px 0 rgba(199, 151, 89, 0.2823529412), 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 rgba(85, 85, 84, 0.7882352941);
   transition: ease-in-out 1s;
   margin-top: -140%;
   text-align: center;
@@ -475,11 +487,45 @@ form {
   right: 10px;
 }
 
+#comprar-ahora {
+  width: 15em;
+  background-color: rgb(199, 151, 89);
+  border: none;
+  margin-top: 15%;
+  color: white;
+  padding-inline: 1em;
+  height: 3em;
+  border-radius: 500px;
+  font-size: 1.3em;
+  font-weight: 500;
+  font-family: Oswald;
+}
+
 .cards {
-  display: flex;
+  display: none;
   justify-content: center;
   gap: 1.5em;
   margin-top: 2em;
+}
+
+.cards-active {
+  display: flex;
+}
+
+.carrito-float {
+  position: fixed; /* Fija la posición en la pantalla */
+  bottom: 15%; /* 5% desde la parte inferior */
+  left: 5%; /* 5% desde la parte izquierda */
+  background-color: white; /* Color de fondo (puedes cambiarlo) */
+  color: rgb(0, 0, 0); /* Color del texto */
+  padding: 1em;
+  width: 6em; /* Espaciado interno */
+  border-radius: 500px; /* Forma circular */
+  font-size: 18px; /* Tamaño de texto */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+  z-index: 1000; /* Asegura que esté encima de otros elementos */
+  text-align: center;
+  z-index: 4; /* Centrar el texto */
 }
 
 .card {
@@ -599,6 +645,19 @@ td {
 /* Estilos para el modal */
 .modal {
   display: none;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con opacidad */
+  padding-top: 50px;
+}
+
+.modal-con-envio {
+  display: block;
   position: fixed;
   z-index: 10;
   top: 0;
@@ -822,7 +881,6 @@ td {
 }
 
 .cards {
-  display: flex;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Ajuste automático */
   justify-content: center;
   width: 95%;
@@ -1027,6 +1085,7 @@ footer p {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
   box-sizing: border-box;
+  gap: 1rem;
   align-items: center;
   justify-content: center;
 }
@@ -1073,7 +1132,7 @@ footer p {
   background-color: rgb(199, 151, 89);
   padding: 8px;
   font-size: 2em;
-  margin-top: 1%;
+  margin-top: 2%;
   text-align: center;
   font-family: Oswald;
   font-weight: 400;
@@ -1100,7 +1159,7 @@ footer p {
 }
 
 .boton-volver {
-  background-color: whitesmoke;
+  background-color: rgba(245, 245, 245, 0.616);
   padding: 12px;
   font-size: 1.4em;
   text-align: center;
@@ -1110,10 +1169,10 @@ footer p {
   text-align: center;
   justify-content: center;
   width: 60%;
-  margin-top: 220px;
+  margin-top: 40px;
   color: grey;
   gap: 1rem;
-  position: absolute;
+  position: fixed;
   margin-left: 1.4em;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.178);
 }
@@ -1164,12 +1223,6 @@ footer p {
   margin-bottom: 2rem;
   text-align: center;
   font-size: 40px;
-}
-
-.contenedor-productos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
 }
 
 .producto-imagen {
@@ -1380,28 +1433,24 @@ footer p {
 
 /* Estilos generales de los botones */
 .ordenar-boton {
-  padding: 8px 16px;
-  background-color: #ffffff; /* Fondo blanco para imitar un select */
+  padding: 16px 32px;
+  background-color: rgb(128, 128, 128); /* Fondo blanco para imitar un select */
   border: 1px solid #ccc; /* Borde similar al select */
   border-radius: 19px; /* Bordes redondeados */
   cursor: pointer;
   display: inline-block;
-  min-width: 150px; /* Ancho mínimo para parecerse más a un select */
-  text-align: left; /* Texto alineado a la izquierda */
-  font-size: 16px;
-  color: #333; /* Color de texto */
+  min-width: 200px; /* Ancho mínimo para parecerse más a un select */
+  text-align: center; /* Texto alineado a la izquierda */
+  font-size: 1em;
+  color: #f8f8f8; /* Color de texto */
   transition: background-color 0.3s ease, border 0.3s ease;
   font-family: Oswald;
   font-weight: 500;
+  transition: 1s;
 }
 
 .ordenarpor {
   font-size: 22px;
-}
-
-/* Hover para imitar el efecto de hover de un select */
-.ordenar-boton:hover {
-  background-color: rgba(128, 128, 128, 0.712);
 }
 
 /* Estado activo para imitar la opción seleccionada */
@@ -1415,23 +1464,23 @@ footer p {
 
 /* Ajuste del contenedor de botones */
 .ordenar-opciones {
-  display: inline-block; /* Mostrar botones en fila */
+  display: inline-flex; /* Mostrar botones en fila */
   border-radius: 4px;
   overflow: hidden; /* Esconder bordes internos */
   background-color: rgba(255, 255, 255, 0); /* Fondo blanco */
   font-size: 22px;
   font-family: Oswald;
   font-weight: 800;
+  gap: 2%;
+  width: 120%;
 }
 
 .ordenar-boton:first-child {
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  border-radius: 500px;
 }
 
 .ordenar-boton:last-child {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-radius: 500px;
 }
 
 @media (min-width: 900px) {
@@ -1456,6 +1505,21 @@ footer p {
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
+  }
+  .contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 100%;
+  }
+  .producto-imagen {
+    max-width: 500px;
+    height: auto;
+    object-fit: cover; /* Mantener proporciones */
+    border-radius: 1rem;
+    background-color: white;
+    min-width: 200px;
+    display: flex;
   }
   .shopping_bag {
     color: white;
@@ -1602,6 +1666,19 @@ footer p {
     position: relative;
     margin-top: 0;
   }
+  .producto-informacion {
+    padding-inline: 20%;
+    margin-bottom: 2%;
+    text-align: center;
+    text-wrap: balance;
+    justify-content: space-evenly;
+  }
+  /* Hover para imitar el efecto de hover de un select */
+  .ordenar-boton:hover {
+    transition: 1s;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.5764705882);
+  }
   .carousel-item {
     margin-top: 1em;
     min-width: 400px;
@@ -1612,6 +1689,10 @@ footer p {
     width: 100%; /* Asegura que ocupe todo el ancho disponible */
     padding: 0;
     padding: 2%;
+  }
+  .carrito-float {
+    scale: 1.5;
+    bottom: 20%;
   }
   .container-producto img {
     max-width: 500px;
