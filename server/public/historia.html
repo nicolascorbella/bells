@@ -1,0 +1,200 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guardian Bell</title>
+    <link rel="icon" href="./images/favicon.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+
+  </head>
+  <body>
+    
+    <header>
+
+    <a href="https://theguardianbell.com.ar"><img src="./images/logo.png" alt="" class="logo">
+    <h1>The Guardian Bell</h1></a>
+    <span class="material-symbols-outlined shopping_bag"><a href="/tienda">
+      shopping_bag
+      </span></a>
+      <nav class="desk-ul">
+        <ul>
+          <li>
+            Productos
+            <div class="productos">
+              <ol>
+                <a href="/cruzmalta"><li>Campanas</li></a>
+                <a href="/ruta66"><li>Joyas</li></a>
+            
+              </ol>
+            </div>
+          </li>
+          <a href="/tienda"><li>Tienda</li></a>
+          <a href="/historia"><li>Leyenda</li></a>
+        </ul>
+      </nav>
+  </header>
+  <label class="hamburger-menu">
+    <input type="checkbox" id="menu-toggle" />
+  </label>
+  <aside class="sidebar">
+    <nav>
+      <a href="https://theguardianbell.com.ar"><div>Inicio</div></a>
+      <div class="headerline"></div>
+      <a href="/tienda"><div>Tienda</div></a>
+      <div class="headerline"></div>
+      <div><a href="/historia">La leyenda de la campanas</div></a>
+      <div class="headerline"></div>
+      
+    </nav>
+  </aside>
+  <article class="historia">
+    <h2>La leyenda de la campana</h2>
+    <p>
+        Érase una vez, a principios del siglo XX en EE. UU., un viejo motociclista con barba canosa estaba paseando en su chopper por una carretera rural en una noche clara y tranquila. De repente, su moto empezó a vibrar y a derrapar, llevándolo a caer al suelo. Mientras se recuperaba, notó una sombra sospechosa y se encontró rodeado de gremlins malvados que saboteaban vehículos. Gritando y tratando de ahuyentarlos, el motociclista vio que el sonido de una campana distante asustó a los gremlins, que huyeron. Al regresar a casa, su Vieja Dama le dio una campana de la suerte para su moto, que desde entonces nunca volvió a tener problemas con gremlins. Así nació la Campana del Motociclista.
+    </p>
+    <h3>¡No le des oportunidad a los gremlins!</h2>
+
+    <img src="../images/gremlin.jpg">
+    <h2>Origen de la campana</h2>
+    <p>No está completamente claro de dónde provienen exactamente las Campanas del Motociclista, pero hay dos explicaciones muy plausibles para esta tradición.
+
+        La primera explicación es que, cuando las motocicletas se hicieron accesibles para las masas, muchas personas colgaban una pequeña campana en sus mopeds para alertar si alguien intentaba mover la moto, lo que ayudaba a disuadir a los ladrones y, con el tiempo, la tradición se volvió popular.
+        
+        La segunda explicación está relacionada con los accidentes con animales salvajes. Se dice que el sonido de una pequeña campana es desagradable para los animales y los alerta de la aproximación de una moto, lo que puede prevenir accidentes, especialmente de noche o en niebla.
+        
+        Independientemente de si las Campanas del Motociclista protegen por suerte o por razones prácticas, lo importante es que un regalo dado de corazón siempre es valioso y apreciado por el receptor.</p>
+</article>
+</div>
+<div class="container">
+  <img src="images/iron.jpg" alt="" class="wallpaper">
+  <img src="images/iron.jpg" alt="" class="wallpaper rotada">
+  <img src="./images/iron2.jpg" alt="" class="wallpaper-pc">
+  <img src="./images/iron2.jpg" alt="" class="wallpaper-pc rotada fad">
+  <img src="./images/iron2.jpg" alt="" class="wallpaper-pc pc-xl">
+  <img src="./images/iron2.jpg" alt="" class="wallpaper-pc pc-xl">
+  </div>
+
+<footer>
+<div class="redes">REDES SOCIALES</div>
+<div class="footerline"></div>
+<picture>  <a href="" target="_blank">
+    <img class="footer-img" src="../images/fb.png">
+</a>
+<a href="https://www.instagram.com/theguardianbell/" target="_blank">
+
+<img class="" src="../images/ig.png">
+</a>
+<a href="" target="_blank">
+
+<img class="" src="../images/wpp.png">
+</a></picture>
+
+<p>The Guardian Bell</p>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const carrusel = document.querySelector('.carrusel-items');
+  let isAnimating = false; // Variable para controlar la animación
+  if (carrusel) {
+      const items = Array.from(carrusel.children);
+      const totalItems = items.length;
+
+      // Duplicar los elementos para que el carrusel sea infinito
+      for (let i = 0; i < totalItems; i++) {
+          let clone = items[i].cloneNode(true);
+          carrusel.appendChild(clone);
+      }
+
+      // Inicialmente establecemos la velocidad normal
+      carrusel.style.animationDuration = '35s';
+
+      // Evento para aumentar la velocidad al hacer hover sin reiniciar la animación
+      carrusel.addEventListener('mouseover', () => {
+          if (!isAnimating) {
+              isAnimating = true;  // Bloqueamos el evento mientras la animación esté activa
+
+              // Cambiamos solo la duración de la animación sin reiniciarla
+              carrusel.style.animationDuration = '35s';
+
+              // Reseteamos la velocidad original después de 2 segundos
+              setTimeout(() => {
+                  carrusel.style.animationDuration = '35s'; // Restablece la velocidad a 35s
+                  isAnimating = false; // Permitimos volver a activar el evento después de los 2s
+              }, 2000); // Duración del efecto: 2 segundos
+          }
+      });
+
+      // Evento para reseteo cuando se quita el hover (reseteo en 1 segundo)
+      carrusel.addEventListener('mouseout', () => {
+          setTimeout(() => {
+              carrusel.style.animationDuration = '35s'; // Reseteamos la duración a 35s si es necesario
+          }, 1000); // Reseteo después de 1 segundo
+      });
+  }
+
+  // ------------------ Diapositiva Móvil ------------------
+  const imagesMobile = document.querySelectorAll('.diapositiva-mobile img');
+  let currentImageIndexMobile = 0;
+  const totalImagesMobile = imagesMobile.length;
+
+  if (totalImagesMobile > 0) {
+      function showNextImageMobile() {
+          imagesMobile[currentImageIndexMobile].classList.remove('active');
+          currentImageIndexMobile = (currentImageIndexMobile + 1) % totalImagesMobile;
+          imagesMobile[currentImageIndexMobile].classList.add('active');
+      }
+      imagesMobile[currentImageIndexMobile].classList.add('active');
+      setInterval(showNextImageMobile, 3000);
+  }
+
+  // ------------------ Diapositiva PC ------------------
+  const imagesPC = document.querySelectorAll('.diapositiva-pc img');
+  let currentImageIndexPC = 0;
+  const totalImagesPC = imagesPC.length;
+
+  if (totalImagesPC > 0) {
+      function showNextImagePC() {
+          imagesPC[currentImageIndexPC].classList.remove('active');
+          currentImageIndexPC = (currentImageIndexPC + 1) % totalImagesPC;
+          imagesPC[currentImageIndexPC].classList.add('active');
+      }
+      imagesPC[currentImageIndexPC].classList.add('active');
+      setInterval(showNextImagePC, 3000);
+  }
+
+  // ------------------ Control de Scroll con Menu Toggle ------------------
+  const menuToggle = document.getElementById('menu-toggle');
+  if (menuToggle) {
+      menuToggle.addEventListener('change', function() {
+          if (this.checked) {
+              document.body.classList.add('no-scroll');
+          } else {
+              document.body.classList.remove('no-scroll');
+          }
+      });
+  }
+
+  
+  // ------------------ Animación de desaparición de div ------------------
+  const cta = document.getElementById('cta');
+  const ctaLink = document.getElementById('cta-link');
+  
+  if (cta && ctaLink) {
+      ctaLink.addEventListener('click', function (e) {
+          e.preventDefault(); // Evita la redirección inmediata
+          cta.classList.add('hide'); // Añade la clase para la animación de desaparición
+
+          // Después de 1 segundo (igual al tiempo de la animación), redirige al enlace
+          setTimeout(() => {
+              window.location.href = ctaLink.href;
+          }, 1000); // 1000 milisegundos = 1 segundo
+      });
+  }
+});</script>
+</body>
+</html>
