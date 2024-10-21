@@ -48,11 +48,19 @@ app.get("/", (req, res) => {
 app.get("/tienda", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "tienda.html"));
 });
+app.get("/historia", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "historia.html"));
+});
 
 app.get("/carrito", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "carrito.html"));
 });
-
+app.get("/carrito-con-envio", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "carrito-con-envio.html"));
+});
+app.get("/carrito-con-retiro", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "carrito-con-retiro.html"));
+});
 app.get("/calavera", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "campanas", "calavera", "index.html"));
 });
