@@ -21,11 +21,11 @@ body {
 
 h1 {
   color: rgba(238, 0, 0, 0);
-  font-style: italic;
   font-size: 1.5em;
   position: absolute;
   width: 100%;
   font-weight: bold; /* Negrita para mayor contraste */
+  display: none;
 }
 
 :root {
@@ -1495,6 +1495,7 @@ footer p {
     padding: 0;
     position: relative;
     color: white;
+    display: block;
   }
   .logo {
     width: 6em;
