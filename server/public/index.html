@@ -129,6 +129,7 @@
   <div class="container">
     <img src="images/iron.jpg" alt="" class="wallpaper">
     <img src="images/iron.jpg" alt="" class="wallpaper rotada">
+    <img src="images/iron.jpg" alt="" class="wallpaper rotada">
     <img src="./images/iron2.jpg" alt="" class="wallpaper-pc">
     <img src="./images/iron2.jpg" alt="" class="wallpaper-pc rotada fad">
     </div>
@@ -221,18 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setInterval(showNextImagePC, 3000);
     }
 
-    // ------------------ Control de Scroll con Menu Toggle ------------------
-    const menuToggle = document.getElementById('menu-toggle');
-    if (menuToggle) {
-        menuToggle.addEventListener('change', function() {
-            if (this.checked) {
-                document.body.classList.add('no-scroll');
-            } else {
-                document.body.classList.remove('no-scroll');
-            }
-        });
-    }
-
+  
     
     // ------------------ Animación de desaparición de div ------------------
     const cta = document.getElementById('cta');
@@ -249,6 +239,18 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 1000); // 1000 milisegundos = 1 segundo
         });
     }
-});</script>
+});
+  // ------------------ Control de Scroll con Menu Toggle ------------------
+  const menuToggle = document.getElementById('menu-toggle');
+    if (menuToggle) {
+        menuToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('no-scroll');
+            } else {
+                document.body.classList.remove('no-scroll');
+            }
+        });
+    }
+</script>
   </body>
 </html>
