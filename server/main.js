@@ -61,9 +61,6 @@ app.get("/carrito-con-envio", (req, res) => {
 app.get("/carrito-con-retiro", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "carrito-con-retiro.html"));
 });
-app.get("/calavera", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "campanas", "calavera", "index.html"));
-});
 
 // Ruta para crear una preferencia de pago en Mercado Pago
 app.post("/create_preference", async (req, res) => {
