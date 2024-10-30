@@ -49,8 +49,9 @@ let productos = [];
             div.classList.add("producto");
     
             const enlace = document.createElement("a");
-            enlace.href = `/campanas/${encodeURIComponent(producto.titulo.toLowerCase())}`;
+            enlace.href = `/campanas/${producto.id}`;
             enlace.target = "";
+            
     
             const imagenProducto = document.createElement("img");
             imagenProducto.classList.add("producto-imagen");

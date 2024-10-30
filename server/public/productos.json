@@ -1,8 +1,8 @@
 [
     {
         "id": "campana00",
-        "titulo": "Aguila",
-        "imagen": "../campanas/aguila/img1.webp",
+        "titulo": "Eagle",
+        "imagen": "../campanas/campana00/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -11,8 +11,8 @@
     },
     {
         "id": "campana01",
-        "titulo": "Calavera",
-        "imagen": "../campanas/calavera/img1.webp",
+        "titulo": "Skull",
+        "imagen": "../campanas/campana01/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -21,8 +21,8 @@
     },
     {
         "id": "campana02",
-        "titulo": "CruzMalta",
-        "imagen": "../campanas/cruzmalta/img1.webp",
+        "titulo": "Maltese Cross",
+        "imagen": "../campanas/campana02/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -31,8 +31,8 @@
     },
     {
         "id": "campana03",
-        "titulo": "Paz",
-        "imagen": "../campanas/paz/img1.webp",
+        "titulo": "Peace",
+        "imagen": "../campanas/campana03/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -42,7 +42,7 @@
     {
         "id": "campana04",
         "titulo": "Live",
-        "imagen": "../campanas/live/img1.webp",
+        "imagen": "../campanas/campana04/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -51,8 +51,8 @@
     },
     {
         "id": "campana05",
-        "titulo": "Unoporciento",
-        "imagen": "../campanas/unoporciento/img1.webp",
+        "titulo": "One Percent",
+        "imagen": "../campanas/campana05/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -61,8 +61,8 @@
     },
     {
         "id": "campana06",
-        "titulo": "Cruz Alada",
-        "imagen": "../campanas/cruzalada/img1.webp",
+        "titulo": "Winged Cross",
+        "imagen": "../campanas/campana06/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -71,8 +71,8 @@
     },
     {
         "id": "campana07",
-        "titulo": "Motocrucis",
-        "imagen": "../campanas/motocrucis/img1.webp",
+        "titulo": "MotoCross",
+        "imagen": "../campanas/campana07/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -82,7 +82,7 @@
     {
         "id": "campana08",
         "titulo": "Lady Rider",
-        "imagen": "../campanas/ladyrider/img1.webp",
+        "imagen": "../campanas/campana08/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -91,8 +91,8 @@
     },
     {
         "id": "campana09",
-        "titulo": "Lucky13",
-        "imagen": "../campanas/lucky13/img1.webp",
+        "titulo": "Lucky 13",
+        "imagen": "../campanas/campana09/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -101,8 +101,8 @@
     },
     {
         "id": "campana10",
-        "titulo": "Manopla",
-        "imagen": "../campanas/manopla/img1.webp",
+        "titulo": "Knuckle",
+        "imagen": "../campanas/campana10/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -111,8 +111,8 @@
     },
     {
         "id": "campana11",
-        "titulo": "Ruta66",
-        "imagen": "../campanas/ruta66/img1.webp",
+        "titulo": "Route 66",
+        "imagen": "../campanas/campana11/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
@@ -121,67 +121,82 @@
     },
     {
         "id": "campana12",
-        "titulo": "Vikingo",
-        "imagen": "../campanas/vikingo/img1.webp",
+        "titulo": "Viking",
+        "imagen": "../campanas/campana12/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
         },
         "precio": 29999
-    },{
+    },
+    {
         "id": "campana13",
-        "titulo": "León",
-        "imagen": "../campanas/leon/img1.webp",
+        "titulo": "Lion",
+        "imagen": "../campanas/campana13/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
         },
         "precio": 29999
-    },{
+    },
+    {
         "id": "campana14",
-        "titulo": "twopistols",
-        "imagen": "../campanas/twopistols/img1.webp",
+        "titulo": "Two Pistols",
+        "imagen": "../campanas/campana14/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
         },
         "precio": 21999
-    },{
+    },
+    {
         "id": "campana15",
         "titulo": "Horned Skull",
-        "imagen": "../campanas/hornedskull/img1.webp",
+        "imagen": "../campanas/campana15/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
         },
         "precio": 29999
-    },{
+    },
+    {
         "id": "campana16",
         "titulo": "Bearded Skull",
-        "imagen": "../campanas/beardedskull/img1.webp",
+        "imagen": "../campanas/campana16/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
         },
         "precio": 29999
-    },{
+    },
+    {
         "id": "campana17",
-        "titulo": "Aguila Live to Ride",
-        "imagen": "../campanas/ave/img1.webp",
+        "titulo": "Eagle Live to Ride",
+        "imagen": "../campanas/campana17/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
         },
         "precio": 29999
-    },{
+    },
+    {
         "id": "campana18",
-        "titulo": "Virgendeguadalupe",
-        "imagen": "../campanas/virgendeguadalupe/img1.webp",
+        "titulo": "Our Lady of Guadalupe",
+        "imagen": "../campanas/campana18/img1.webp",
         "categoria": {
             "nombre": "campanas",
             "id": "campanas"
         },
         "precio": 21999
+    },
+    {
+        "id": "campana19",
+        "titulo": "Live black version",
+        "imagen": "../campanas/campana19/img1.webp",
+        "categoria": {
+            "nombre": "campanas",
+            "id": "campanas"
+        },
+        "precio": 29999
     }
-
 ]
